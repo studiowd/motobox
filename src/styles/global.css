@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@import "./components.css";
+
+@layer base {
+  :root {
+    --bg-carbon: #0a0a0a;
+    --bg-graphite: #141414;
+    --border-dark: #262626;
+    --text-muted: #a3a3a3;
+    --text-light: #f5f5f5;
+    --accent-red: #dc2626;
+    
+    --font-syncopate: 'Syncopate', sans-serif;
+    --font-krona: 'Krona One', sans-serif;
+    --font-space: 'Space Grotesk', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-carbon);
+    color: var(--text-light);
+    font-family: var(--font-space);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+.font-headline {
+  font-family: var(--font-syncopate);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.font-emblem {
+  font-family: var(--font-krona);
+}
+
+.font-tech {
+  font-family: var(--font-space);
+}
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

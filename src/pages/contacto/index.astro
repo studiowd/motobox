@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getWhatsAppUrl } from '../../utils/whatsapp';
+
+const whatsappGeneral = getWhatsAppUrl('general');
+const whatsappTurno = getWhatsAppUrl('turno');
+---
+
+<BaseLayout title="Contacto" description="Comunícate directamente con Taller Cantón a través de WhatsApp para consultas y turnos.">
+  <section class="pt-32 pb-16 bg-[#141414] border-b border-[#262626]">
+    <div class="max-w-7xl mx-auto px-6 space-y-4">
+      <span class="font-emblem text-red-500 text-xs tracking-widest uppercase">Atención Directa</span>
+      <h1 class="font-headline text-3xl md:text-5xl text-white">Contacto y Turnos</h1>
+      <p class="font-tech text-neutral-300 text-sm md:text-base max-w-2xl leading-relaxed">
+        Toda consulta y coordinación de turnos se realiza de manera directa y personalizada a través de WhatsApp. Sin formularios.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#0a0a0a]">
+    <div class="max-w-3xl mx-auto px-6 space-y-8">
+      <div class="card-industrial p-8 space-y-6 text-center">
+        <h2 class="font-headline text-white text-xl">Canal Oficial de WhatsApp</h2>
+        <p class="text-xs text-neutral-400 leading-relaxed">
+          Número oficial: <strong class="text-white">+54 11 3341-9375</strong><br/>
+          Podés enviarnos fotografías de tu vehículo o moto para una primera evaluación técnica.
+        </p>
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={whatsappTurno} target="_blank" rel="noopener noreferrer" class="bg-red-600 hover:bg-red-700 text-white font-headline text-xs px-8 py-4 transition-smooth">
+            Solicitar turno
+          </a>
+          <a href={whatsappGeneral} target="_blank" rel="noopener noreferrer" class="bg-neutral-800 hover:bg-neutral-700 text-white font-headline text-xs px-8 py-4 transition-smooth">
+            Consulta general
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

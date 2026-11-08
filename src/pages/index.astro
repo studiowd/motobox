@@ -1,0 +1,1756 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getWhatsAppUrl } from "../utils/whatsapp";
+
+const whatsappChapa = getWhatsAppUrl("chapa");
+const whatsappMotos = getWhatsAppUrl("motos");
+const whatsappEstetica = getWhatsAppUrl("estetica");
+const whatsappTurno = getWhatsAppUrl("turno");
+const whatsappGeneral = getWhatsAppUrl("general");
+---
+
+<BaseLayout
+  title="Taller Cantón | Chapa y pintura, mecánica y service de motos"
+  description="Taller Cantón en Hurlingham. Chapa y pintura, mantenimiento preventivo, mecánica y diagnóstico de motos. Atención coordinada por turno."
+>
+  <main class="overflow-hidden bg-[#090909] text-white">
+    <section
+      id="inicio"
+      class="hero relative isolate min-h-[720px] h-[92svh] max-h-[980px] overflow-hidden bg-black"
+    >
+      <div class="hero-noise pointer-events-none absolute inset-0 z-[2]"></div>
+
+      <div id="hero-slider" class="absolute inset-0">
+        <!-- SLIDE 1 / CHAPA Y PINTURA -->
+        <article
+          class="hero-slide is-active absolute inset-0"
+          aria-hidden="false"
+        >
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/canton-amarok.jpeg"
+          >
+            <!-- Reemplazar por tu video -->
+            <source
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/videos/amarok-proceso.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="hero-shade"></div>
+          <div
+            class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 pb-20 pt-28 lg:px-12"
+          >
+            <div class="hero-copy max-w-3xl">
+              <p class="eyebrow">
+                <span></span> TALLER CANTÓN / CHAPA Y PINTURA
+              </p>
+
+              <h1 class="hero-title">
+                REPARACIÓN DE CHAPA,<br />PINTURA Y <em>TERMINACIÓN.</em>
+              </h1>
+
+              <p
+                class="mt-6 max-w-xl text-base leading-8 text-white/70 md:text-lg"
+              >
+                Recuperación de superficies, reparación de carrocería, pintura
+                automotriz y pulido. Trabajamos sobre la uniformidad, la
+                igualación del color y la calidad del acabado final.
+              </p>
+
+              <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  class="btn-primary"
+                  href={whatsappChapa}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Consultar por chapa y pintura <span>↗</span>
+                </a>
+
+                <a class="btn-ghost" href="#especialidades">
+                  Explorar especialidades <span>↓</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-index">
+            <strong>01</strong><span>/</span>03 <small>CARROCERÍA</small>
+          </div>
+        </article>
+
+        <!-- SLIDE 2 / SERVICE PREVENTIVO -->
+        <article class="hero-slide absolute inset-0" aria-hidden="true">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/images/hero-service-moto-poster.jpg"
+          >
+            <!-- Reemplazar por tu video -->
+            <source
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/1333384-hd_1920_1080_30fps.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="hero-shade"></div>
+          <div
+            class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 pb-20 pt-28 lg:px-12"
+          >
+            <div class="hero-copy max-w-3xl">
+              <p class="eyebrow"><span></span> TALLER CANTÓN / MANTENIMIENTO</p>
+              <h2 class="hero-title">
+                CUIDÁ TU MOTO.<br /><em>ANTICIPATE.</em>
+              </h2>
+              <p
+                class="mt-6 max-w-xl text-base leading-8 text-white/70 md:text-lg"
+              >
+                Service preventivo y controles fundamentales para mantener tu
+                moto en buenas condiciones y detectar desgastes a tiempo.
+              </p>
+              <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  class="btn-primary"
+                  href={whatsappMotos}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Consultar por service <span>↗</span></a
+                >
+                <a class="btn-ghost" href="#service-preventivo"
+                  >Ver mantenimiento <span>↓</span></a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="hero-index">
+            <strong>02</strong><span>/</span>03 <small>SERVICE PREVENTIVO</small
+            >
+          </div>
+        </article>
+
+        <!-- SLIDE 3 / MECÁNICA Y DIAGNÓSTICO -->
+        <article class="hero-slide absolute inset-0" aria-hidden="true">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/images/hero-mecanica-poster.jpg"
+          >
+            <!-- Reemplazar por tu video -->
+            <source
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/demo.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="hero-shade"></div>
+          <div
+            class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 pb-20 pt-28 lg:px-12"
+          >
+            <div class="hero-copy max-w-3xl">
+              <p class="eyebrow"><span></span> TALLER CANTÓN / MECÁNICA</p>
+              <h2 class="hero-title">
+                DIAGNOSTICAR<br />ANTES DE <em>CAMBIAR.</em>
+              </h2>
+              <p
+                class="mt-6 max-w-xl text-base leading-8 text-white/70 md:text-lg"
+              >
+                Diagnóstico electrónico, revisión mecánica y mantenimiento
+                especializado. Primero buscamos el origen de la falla.
+              </p>
+              <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  class="btn-primary"
+                  href={whatsappMotos}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Consultar por mecánica <span>↗</span></a
+                >
+                <a class="btn-ghost" href="#mecanica-motos"
+                  >Conocer servicios <span>↓</span></a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="hero-index">
+            <strong>03</strong><span>/</span>03 <small>DIAGNÓSTICO</small>
+          </div>
+        </article>
+      </div>
+
+      <div
+        class="absolute bottom-8 left-6 right-6 z-20 mx-auto flex max-w-7xl items-end justify-between lg:px-6"
+      >
+        <div class="flex items-center gap-3" aria-label="Controles del slider">
+          <button
+            class="slider-dot active"
+            data-slide="0"
+            aria-label="Mostrar chapa y pintura"></button>
+          <button
+            class="slider-dot"
+            data-slide="1"
+            aria-label="Mostrar service preventivo"></button>
+          <button
+            class="slider-dot"
+            data-slide="2"
+            aria-label="Mostrar mecánica de motos"></button>
+        </div>
+        <a
+          href="#especialidades"
+          class="hidden items-center gap-3 text-[10px] uppercase tracking-[.24em] text-white/60 transition hover:text-white md:flex"
+        >
+          Descubrí Cantón <span class="text-lg">↓</span>
+        </a>
+      </div>
+      <div class="hero-vertical hidden xl:block">
+        HURLINGHAM · BUENOS AIRES · ARGENTINA
+      </div>
+    </section>
+
+    <!-- =========================================================
+         02. BARRA DE IDENTIDAD / PROPUESTA
+    ========================================================== -->
+    <section class="border-y border-white/10 bg-[#111]">
+      <div
+        class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 px-6 md:grid-cols-4 md:divide-y-0 lg:px-12"
+      >
+        <div class="py-7 pr-5 md:py-8">
+          <span class="stat-number">01</span><p
+            class="mt-2 text-[10px] uppercase tracking-[.18em] text-white/50"
+          >
+            Atención coordinada
+          </p>
+        </div>
+        <div class="py-7 pl-5 md:px-7 md:py-8">
+          <span class="stat-number">02</span><p
+            class="mt-2 text-[10px] uppercase tracking-[.18em] text-white/50"
+          >
+            Evaluación del trabajo
+          </p>
+        </div>
+        <div class="py-7 pr-5 md:px-7 md:py-8">
+          <span class="stat-number">03</span><p
+            class="mt-2 text-[10px] uppercase tracking-[.18em] text-white/50"
+          >
+            Dos especialidades
+          </p>
+        </div>
+        <div class="py-7 pl-5 md:py-8">
+          <span class="stat-number">04</span><p
+            class="mt-2 text-[10px] uppercase tracking-[.18em] text-white/50"
+          >
+            Trato directo
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         03. ESPECIALIDADES
+    ========================================================== -->
+
+    <section id="especialidades" class="section-pad bg-[#0b0b0b]">
+      <div class="mx-auto max-w-7xl px-6 lg:px-12">
+        <!-- ENCABEZADO -->
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span></span> QUÉ HACEMOS</p>
+
+            <h2 class="section-title">
+              UN TALLER.<br />
+              <em>DISTINTAS ESPECIALIDADES.</em>
+            </h2>
+          </div>
+
+          <p class="max-w-sm text-sm leading-7 text-white/50">
+            Chapa y pintura, mecánica integral de motos y atención a
+            aseguradoras. Tres áreas de trabajo para atender distintas
+            necesidades de reparación y mantenimiento.
+          </p>
+        </div>
+
+        <!-- ESPECIALIDADES -->
+        <div class="mt-14 grid gap-5 lg:grid-cols-3">
+          <!-- 01 / CHAPA Y PINTURA -->
+          <a href="/chapa-y-pintura/" class="specialty-card reveal">
+            <div class="specialty-media">
+              <img
+                src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/canton-amarok.jpeg"
+                alt="Trabajo de chapa, pintura y terminación de carrocería"
+                loading="lazy"
+              />
+              <span class="media-number">01 / AUTO</span>
+              <span class="media-arrow">↗</span>
+            </div>
+
+            <div class="p-7 md:p-8">
+              <p class="card-kicker">CARROCERÍA · PINTURA</p>
+
+              <h3>Chapa y pintura</h3>
+
+              <p>
+                Reparación de daños, recuperación de paneles, preparación de
+                superficies y trabajos de pintura automotriz.
+              </p>
+
+              <span class="card-link">VER SERVICIOS <b>→</b></span>
+            </div>
+          </a>
+
+          <!-- 02 / MECÁNICA INTEGRAL DE MOTOS -->
+          <a
+            href="/mecanica-de-motos/"
+            class="specialty-card reveal reveal-delay-1"
+          >
+            <div class="specialty-media">
+              <img
+                src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/WhatsApp%20Image%202026-11-08%20at%2012.23.00%20AM.jpeg"
+                alt="Mantenimiento y mecánica de motocicletas"
+                loading="lazy"
+              />
+              <span class="media-number">02 / MOTO</span>
+              <span class="media-arrow">↗</span>
+            </div>
+
+            <div class="p-7 md:p-8">
+              <p class="card-kicker">SERVICE · DIAGNÓSTICO · REPARACIÓN</p>
+
+              <h3>Mecánica integral de motos</h3>
+
+              <p>
+                Service preventivo, controles mecánicos, diagnóstico de fallas y
+                reparación de los distintos sistemas de la motocicleta.
+              </p>
+
+              <span class="card-link">VER SERVICIOS <b>→</b></span>
+            </div>
+          </a>
+
+          <!-- 03 / ASEGURADORAS -->
+          <a href="/aseguradoras/" class="specialty-card reveal reveal-delay-2">
+            <div class="specialty-media">
+              <img
+                src="https://images.unsplash.com/photo-1684413770726-4ce2b66c3ab0?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+                alt="Trabajo de reparación de carrocería para vehículos asegurados"
+                loading="lazy"
+              />
+              <span class="media-number">03 / SEGUROS</span>
+              <span class="media-arrow">↗</span>
+            </div>
+
+            <div class="p-7 md:p-8">
+              <p class="card-kicker">ASEGURADORAS · REPARACIONES</p>
+
+              <h3>Atención a aseguradoras</h3>
+
+              <p>
+                Coordinación de trabajos de chapa y pintura, evaluación de daños
+                y seguimiento de reparaciones de vehículos asegurados.
+              </p>
+
+              <span class="card-link">
+                CONOCER EL SERVICIO <b>→</b>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         04. CHAPA Y PINTURA
+    ========================================================== -->
+    <section id="chapa-pintura" class="service-feature bg-[#111]">
+      <div class="feature-image reveal">
+        <!-- Imagen o video propio: /images/chapa-proceso.jpg -->
+        <img
+          src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/male-painter-hazmat-suit-inside-car-shop.jpg"
+          alt="Proceso de reparación de carrocería"
+          loading="lazy"
+        />
+        <div class="image-caption">
+          <span>01</span> CARROCERÍA Y TERMINACIÓN
+        </div>
+      </div>
+      <div class="feature-content reveal">
+        <p class="eyebrow"><span></span> ESPECIALIDAD 01 / AUTOMOTORES</p>
+        <h2 class="section-title">
+          CADA DETALLE<br />HACE LA <em>DIFERENCIA.</em>
+        </h2>
+        <p class="feature-intro">
+          Trabajos de carrocería y pintura orientados a recuperar la estética y
+          la presentación de tu vehículo.
+        </p>
+        <div class="service-list">
+          <div>
+            <span>01</span><p>
+              <strong>Reparación de golpes</strong><small
+                >Evaluación y reparación de daños en carrocería.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span>02</span><p>
+              <strong>Reparación de paneles</strong><small
+                >Puertas, guardabarros, capot y otros paños.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span>03</span><p>
+              <strong>Paragolpes y plásticos</strong><small
+                >Reparación y preparación de superficies.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span>04</span><p>
+              <strong>Pintura parcial o por pieza</strong><small
+                >Preparación, aplicación y terminación.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span>05</span><p>
+              <strong>Repintado y pintura integral</strong><small
+                >Trabajos según evaluación del vehículo.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span>06</span><p>
+              <strong>Armado y terminaciones</strong><small
+                >Revisión visual y cuidado de detalles finales.</small
+              >
+            </p>
+          </div>
+        </div>
+        <a
+          class="btn-primary mt-9"
+          href={whatsappChapa}
+          target="_blank"
+          rel="noopener noreferrer">Coordinar evaluación <span>↗</span></a
+        >
+      </div>
+    </section>
+
+    <!-- =========================================================
+         05. SERVICE PREVENTIVO DE MOTOS
+    ========================================================== -->
+    <section id="service-preventivo" class="section-pad bg-[#090909]">
+      <div class="mx-auto max-w-7xl px-6 lg:px-12">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span></span> ESPECIALIDAD 02 / MOTOCICLETAS</p>
+            <h2 class="section-title">
+              EL MEJOR PROBLEMA<br />ES EL QUE <em>PREVENÍS.</em>
+            </h2>
+          </div>
+          <p class="max-w-sm text-sm leading-7 text-white/50">
+            Un mantenimiento a tiempo ayuda a cuidar el motor, mejorar el
+            funcionamiento y detectar componentes que necesitan atención.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 lg:grid-cols-[.85fr_1.15fr]">
+          <div class="preventive-visual reveal">
+            <!-- Video propio opcional: reemplazar poster y source -->
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/cover_ridebaires_2.jpg"
+            >
+              <source src=" " type="video/mp4" />
+            </video>
+            <div class="preventive-overlay">
+              <span class="eyebrow"><span></span> MANTENIMIENTO PROGRAMADO</span
+              >
+              <p>PREVENIR<br /><em>ES CUIDAR.</em></p>
+              <small>Revisión según modelo, kilometraje y estado general.</small
+              >
+            </div>
+          </div>
+
+          <div class="preventive-grid reveal reveal-delay-1">
+            <article class="preventive-item">
+              <span>01</span><div>
+                <h3>Aceite y lubricación</h3><p>
+                  Control y reemplazo de aceite según especificación del
+                  fabricante.
+                </p>
+              </div><b>↗</b>
+            </article>
+            <article class="preventive-item">
+              <span>02</span><div>
+                <h3>Filtros y bujía</h3><p>
+                  Inspección y mantenimiento de filtro de aire, filtro de aceite
+                  y bujía.
+                </p>
+              </div><b>↗</b>
+            </article>
+            <article class="preventive-item">
+              <span>03</span><div>
+                <h3>Frenos</h3><p>
+                  Control de pastillas, discos, accionamiento y estado del
+                  sistema.
+                </p>
+              </div><b>↗</b>
+            </article>
+            <article class="preventive-item">
+              <span>04</span><div>
+                <h3>Transmisión</h3><p>
+                  Limpieza, lubricación, tensión y revisión de cadena, corona y
+                  piñón.
+                </p>
+              </div><b>↗</b>
+            </article>
+            <article class="preventive-item">
+              <span>05</span><div>
+                <h3>Válvulas y motor</h3><p>
+                  Control de luz de válvulas y revisión de funcionamiento según
+                  modelo.
+                </p>
+              </div><b>↗</b>
+            </article>
+            <article class="preventive-item">
+              <span>06</span><div>
+                <h3>Control general</h3><p>
+                  Revisión de fluidos, pérdidas, batería, luces y componentes
+                  visibles.
+                </p>
+              </div><b>↗</b>
+            </article>
+            <div class="preventive-note">
+              <span class="note-icon">i</span>
+              <p>
+                El alcance del service se define según la cilindrada, el modelo,
+                el kilometraje y el estado de la motocicleta. Repuestos e
+                insumos se presupuestan según corresponda.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-10 flex flex-col items-start justify-between gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center"
+        >
+          <p class="text-sm text-white/50">
+            ¿No sabés qué mantenimiento necesita tu moto?
+          </p>
+          <a
+            class="btn-primary"
+            href={whatsappMotos}
+            target="_blank"
+            rel="noopener noreferrer">Consultar por mi moto <span>↗</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="aseguradoras" class="bg-[#1b1b1b] py-24 md:py-28">
+      <div class="mx-auto max-w-7xl px-6 lg:px-12">
+        <div class="grid gap-12 lg:grid-cols-[1fr_.8fr] lg:items-center">
+          <div class="reveal">
+            <p class="eyebrow">
+              <span></span> TALLER CANTÓN / ATENCIÓN A ASEGURADORAS
+            </p>
+
+            <h2 class="section-title mt-5">
+              REPARACIONES<br />
+              POR <em>SINIESTROS.</em>
+            </h2>
+
+            <p
+              class="mt-6 max-w-xl text-sm leading-8 text-white/60 md:text-base"
+            >
+              Trabajos de chapa y pintura para vehículos involucrados en
+              siniestros. Evaluación de daños en carrocería, reparación y
+              pintura automotriz, con coordinación de cada etapa del trabajo.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a class="btn-primary" href="#">
+                Información para aseguradoras <span>↗</span>
+              </a>
+              <a
+                class="btn-ghost"
+                href="https://wa.me/5491133419375?text=Hola%2C%20quisiera%20consultar%20por%20una%20reparaci%C3%B3n%20por%20siniestro."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar por un siniestro <span>↗</span>
+              </a>q
+            </div>
+          </div>
+
+          <div class="reveal">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="border border-white/10 bg-[#141414] p-6">
+                <span class="text-xs font-mono tracking-widest text-red-400">
+                  01 / CARROCERÍA
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-white">
+                  Reparación de daños
+                </h3>
+                <p class="mt-2 text-sm leading-7 text-white/50">
+                  Evaluación y reparación de piezas y paneles afectados.
+                </p>
+              </div>
+
+              <div class="border border-white/10 bg-[#141414] p-6">
+                <span class="text-xs font-mono tracking-widest text-red-400">
+                  02 / PINTURA
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-white">
+                  Pintura automotriz
+                </h3>
+                <p class="mt-2 text-sm leading-7 text-white/50">
+                  Preparación de superficies y trabajos de pintura.
+                </p>
+              </div>
+
+              <div class="border border-white/10 bg-[#141414] p-6">
+                <span class="text-xs font-mono tracking-widest text-red-400">
+                  03 / EVALUACIÓN
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-white">
+                  Revisión del vehículo
+                </h3>
+                <p class="mt-2 text-sm leading-7 text-white/50">
+                  Inspección de los daños y alcance de la reparación.
+                </p>
+              </div>
+
+              <div class="border border-white/10 bg-[#141414] p-6">
+                <span class="text-xs font-mono tracking-widest text-red-400">
+                  04 / COORDINACIÓN
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-white">
+                  Seguimiento del trabajo
+                </h3>
+                <p class="mt-2 text-sm leading-7 text-white/50">
+                  Coordinación de las etapas de reparación.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         07. PROCESO DE TRABAJO
+    ========================================================== -->
+    <section class="section-pad bg-[#090909]">
+      <div class="mx-auto max-w-7xl px-6 lg:px-12">
+        <div class="max-w-2xl reveal">
+          <p class="eyebrow"><span></span> CÓMO TRABAJAMOS</p>
+          <h2 class="section-title mt-5">
+            CLARIDAD EN<br /><em>CADA ETAPA.</em>
+          </h2>
+        </div>
+        <div class="process-line mt-16 grid gap-9 md:grid-cols-4">
+          <article class="process-step reveal">
+            <span>01</span><h3>Nos contactás</h3><p>
+              Nos contás qué necesitás y coordinamos día y horario.
+            </p>
+          </article>
+          <article class="process-step reveal reveal-delay-1">
+            <span>02</span><h3>Evaluamos</h3><p>
+              Revisamos el vehículo y definimos el alcance del trabajo.
+            </p>
+          </article>
+          <article class="process-step reveal reveal-delay-2">
+            <span>03</span><h3>Presupuestamos</h3><p>
+              Te informamos el trabajo y los repuestos o insumos necesarios.
+            </p>
+          </article>
+          <article class="process-step reveal reveal-delay-3">
+            <span>04</span><h3>Realizamos</h3><p>
+              Avanzamos con el trabajo acordado y coordinamos la entrega.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         08. GALERÍA / TRABAJOS
+         Reemplazar imágenes y videos por material propio.
+    ========================================================== -->
+    <section class="gallery-section bg-[#111] py-24 md:py-28">
+      <div class="mx-auto max-w-7xl px-6 lg:px-12">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span></span> TRABAJOS Y PROCESOS</p>
+            <h2 class="section-title">
+              EL TRABAJO<br /><em>SE VE EN LOS DETALLES.</em>
+            </h2>
+          </div>
+          <p class="max-w-sm text-sm leading-7 text-white/50">
+            Un espacio para mostrar reparaciones, procesos, mantenimiento y
+            resultados reales del taller.
+          </p>
+        </div>
+        <div class="gallery-grid mt-12">
+          <a class="gallery-item gallery-large reveal" href="/trabajos/">
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/canton-amarok.jpeg"
+            >
+              <!-- Reemplazar por tu video -->
+              <source
+                src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/amarok.mp4"
+                type="video/mp4"
+              />
+            </video>
+            src="" alt="Trabajo de carrocería realizado en el taller" loading="lazy"
+            />
+            <span
+              ><small>01 / CARROCERÍA</small><strong>Chapa y pintura</strong><b
+                >↗</b
+              ></span
+            >
+          </a>
+          <a class="gallery-item reveal reveal-delay-1" href="/trabajos/">
+            <img
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/mecanicamotos.png"
+              alt="Trabajo de mecánica de motos"
+              loading="lazy"
+            />
+            <span
+              ><small>02 / MECÁNICA</small><strong>Mecánica de motos</strong><b
+                >↗</b
+              ></span
+            >
+          </a>
+          <a class="gallery-item reveal reveal-delay-2" href="/trabajos/">
+            <img
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/servicio-preventivo.png"
+              alt="Mantenimiento preventivo de moto"
+              loading="lazy"
+            />
+            <span
+              ><small>03 / MANTENIMIENTO</small><strong
+                >Service preventivo</strong
+              ><b>↗</b></span
+            >
+          </a>
+        </div>
+        <div class="mt-8 text-center">
+          <a class="btn-ghost" href="/trabajos/"
+            >Ver trabajos del taller <span>↗</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         09. UBICACIÓN
+    ========================================================== -->
+    <section class="location-section bg-[#090909]">
+      <div class="location-copy reveal">
+        <p class="eyebrow"><span></span> DÓNDE ESTAMOS</p>
+        <h2 class="section-title mt-5">
+          CERCA TUYO.<br /><em>ATENCIÓN DIRECTA.</em>
+        </h2>
+        <p class="mt-6 max-w-md text-sm leading-8 text-white/55">
+          Estamos en Centenera 908, Hurlingham. Recibimos consultas de Zona
+          Oeste y coordinamos cada visita previamente.
+        </p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a
+            class="btn-primary"
+            href="https://maps.google.com/?q=Centenera+908+Hurlingham"
+            target="_blank"
+            rel="noopener noreferrer">Cómo llegar <span>↗</span></a
+          >
+          <a
+            class="btn-ghost"
+            href={whatsappGeneral}
+            target="_blank"
+            rel="noopener noreferrer">Hacer una consulta <span>↗</span></a
+          >
+        </div>
+      </div>
+      <div class="location-map reveal reveal-delay-1">
+        <iframe
+          title="Ubicación de Taller Cantón en Hurlingham"
+          src="https://www.google.com/maps?q=Centenera%20908%20Hurlingham&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+        <span class="map-label">TALLER CANTÓN · HURLINGHAM</span>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         10. CTA FINAL
+    ========================================================== -->
+    <section class="final-cta relative overflow-hidden bg-[#171717]">
+      <div class="cta-glow"></div>
+      <div
+        class="relative z-10 mx-auto max-w-5xl px-6 py-24 text-center md:py-32"
+      >
+        <p class="eyebrow justify-center">
+          <span></span> TALLER CANTÓN · HURLINGHAM
+        </p>
+        <h2 class="cta-title mt-6">
+          TU PRÓXIMO PASO<br />EMPIEZA <em>ACÁ.</em>
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-sm leading-8 text-white/55">
+          Contanos qué necesitás. Coordinamos un turno por WhatsApp y te
+          orientamos sobre el servicio adecuado para tu auto o moto.
+        </p>
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <a
+            class="btn-primary"
+            href={whatsappTurno}
+            target="_blank"
+            rel="noopener noreferrer"
+            >Solicitar turno por WhatsApp <span>↗</span></a
+          >
+          <a
+            class="btn-ghost"
+            href={whatsappGeneral}
+            target="_blank"
+            rel="noopener noreferrer">Consulta general <span>↗</span></a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+    :global(body) {
+      background: #090909;
+    }
+    .hero {
+      min-height: 680px;
+    }
+    .hero-slide {
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 1.1s ease,
+        visibility 1.1s ease;
+    }
+    .hero-slide.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65) saturate(0.72);
+    }
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.88) 0%,
+          rgba(0, 0, 0, 0.56) 48%,
+          rgba(0, 0, 0, 0.12) 100%
+        ),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.6), transparent 40%);
+    }
+    .hero-noise {
+      opacity: 0.13;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+    }
+    .hero-copy {
+      animation: heroIn 0.9s 0.15s both;
+    }
+    .hero-title {
+      margin-top: 1.5rem;
+      font-size: clamp(3.3rem, 8vw, 7.7rem);
+      font-weight: 800;
+      line-height: 0.91;
+      letter-spacing: -0.065em;
+    }
+    .hero-title em,
+    .section-title em,
+    .cta-title em,
+    .diagnostic-banner h3 em,
+    .preventive-overlay p em {
+      color: #dc2626;
+      font-style: normal;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: #ef4444;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .eyebrow > span {
+      display: inline-block;
+      width: 25px;
+      height: 1px;
+      background: #dc2626;
+    }
+    .hero-index {
+      position: absolute;
+      right: max(24px, calc((100vw - 1240px) / 2));
+      bottom: 38px;
+      z-index: 15;
+      color: #ffffff80;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+    .hero-index strong {
+      color: white;
+      font-size: 22px;
+    }
+    .hero-index > span {
+      margin: 0 8px;
+      color: #dc2626;
+    }
+    .hero-index small {
+      display: block;
+      margin-top: 5px;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+    }
+    .hero-vertical {
+      position: absolute;
+      right: 22px;
+      top: 42%;
+      z-index: 15;
+      writing-mode: vertical-rl;
+      color: #ffffff70;
+      font-size: 8px;
+      letter-spacing: 0.25em;
+    }
+    .slider-dot {
+      width: 25px;
+      height: 3px;
+      background: #ffffff55;
+      transition:
+        width 0.35s,
+        background 0.35s;
+    }
+    .slider-dot.active {
+      width: 54px;
+      background: #dc2626;
+    }
+    .stat-number {
+      color: #ef4444;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+    .section-pad {
+      padding-top: 115px;
+      padding-bottom: 115px;
+    }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 35px;
+    }
+    .section-title {
+      margin-top: 22px;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+    .specialty-card {
+      display: block;
+      overflow: hidden;
+      border: 1px solid #ffffff12;
+      background: #111;
+      transition:
+        border-color 0.4s,
+        transform 0.4s,
+        background 0.4s;
+    }
+    .specialty-card:hover {
+      transform: translateY(-7px);
+      border-color: #dc262677;
+      background: #151515;
+    }
+    .specialty-media {
+      position: relative;
+      height: 275px;
+      overflow: hidden;
+      background: #1b1b1b;
+    }
+    .specialty-media:after {
+      position: absolute;
+      inset: 35% 0 0;
+      content: "";
+      background: linear-gradient(0deg, #111, transparent);
+    }
+    .specialty-media img,
+    .feature-image img,
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .specialty-card:hover .specialty-media img,
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+    .media-number {
+      position: absolute;
+      left: 22px;
+      top: 20px;
+      z-index: 2;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: white;
+    }
+    .media-arrow {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid #ffffff70;
+      border-radius: 50%;
+      transition:
+        background 0.3s,
+        border 0.3s;
+    }
+    .specialty-card:hover .media-arrow {
+      background: #dc2626;
+      border-color: #dc2626;
+    }
+    .card-kicker {
+      color: #ef4444;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+    }
+    .specialty-card h3 {
+      margin-top: 13px;
+      font-size: 25px;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+    }
+    .specialty-card p:not(.card-kicker) {
+      min-height: 75px;
+      margin-top: 12px;
+      color: #ffffff65;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 25px;
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+    }
+    .card-link b {
+      color: #ef4444;
+      font-size: 15px;
+      transition: transform 0.3s;
+    }
+    .specialty-card:hover .card-link b {
+      transform: translateX(5px);
+    }
+    .service-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .feature-image {
+      position: relative;
+      min-height: 850px;
+      overflow: hidden;
+      background: #202020;
+    }
+    .feature-image:after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(0deg, #0009, transparent 50%);
+    }
+    .image-caption {
+      position: absolute;
+      bottom: 35px;
+      left: 40px;
+      z-index: 2;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+    }
+    .image-caption span {
+      margin-right: 15px;
+      color: #ef4444;
+    }
+    .feature-content {
+      align-self: center;
+      padding: 90px clamp(30px, 7vw, 115px);
+    }
+    .feature-intro {
+      max-width: 480px;
+      margin-top: 22px;
+      color: #ffffff70;
+      font-size: 13px;
+      line-height: 2;
+    }
+    .service-list {
+      margin-top: 35px;
+      border-top: 1px solid #ffffff18;
+    }
+    .service-list > div {
+      display: flex;
+      gap: 20px;
+      padding: 17px 0;
+      border-bottom: 1px solid #ffffff18;
+    }
+    .service-list > div > span {
+      padding-top: 3px;
+      color: #ef4444;
+      font-size: 9px;
+    }
+    .service-list strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .service-list small {
+      display: block;
+      margin-top: 5px;
+      color: #ffffff55;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      padding: 0 22px;
+      font-size: 9px;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition:
+        background 0.3s,
+        border-color 0.3s,
+        transform 0.3s;
+    }
+    .btn-primary {
+      background: #dc2626;
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #b91c1c;
+    }
+    .btn-ghost {
+      border: 1px solid #ffffff35;
+      color: white;
+    }
+    .btn-ghost:hover {
+      border-color: #dc2626;
+      background: #dc26261a;
+    }
+    .preventive-visual {
+      position: relative;
+      min-height: 650px;
+      overflow: hidden;
+      background: #1c1c1c;
+    }
+    .preventive-visual video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.56) saturate(0.65);
+    }
+    .preventive-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 35px;
+      background: linear-gradient(0deg, #000c, transparent 75%);
+    }
+    .preventive-overlay p {
+      margin-top: 18px;
+      font-size: clamp(2.7rem, 5vw, 4.5rem);
+      font-weight: 850;
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+    .preventive-overlay small {
+      margin-top: 15px;
+      color: #ffffff9c;
+      font-size: 11px;
+    }
+    .preventive-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-content: start;
+    }
+    .preventive-item {
+      display: flex;
+      gap: 14px;
+      min-height: 155px;
+      padding: 24px 17px;
+      border-top: 1px solid #ffffff20;
+    }
+    .preventive-item > span {
+      color: #ef4444;
+      font-size: 9px;
+    }
+    .preventive-item h3 {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .preventive-item p {
+      margin-top: 9px;
+      color: #ffffff60;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .preventive-item > b {
+      margin-left: auto;
+      color: #ffffff55;
+      font-weight: 400;
+    }
+    .preventive-note {
+      grid-column: 1/-1;
+      display: flex;
+      gap: 14px;
+      padding: 20px;
+      background: #ffffff08;
+    }
+    .note-icon {
+      display: grid;
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      place-items: center;
+      border: 1px solid #dc2626;
+      border-radius: 50%;
+      color: #ef4444;
+      font-size: 11px;
+    }
+    .preventive-note p {
+      color: #ffffff65;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .mechanic-card {
+      min-height: 230px;
+      padding: 27px 24px;
+      border: 1px solid #ffffff13;
+      background: #0d0d0d;
+      transition:
+        border-color 0.35s,
+        transform 0.35s;
+    }
+    .mechanic-card:hover {
+      transform: translateY(-5px);
+      border-color: #dc262677;
+    }
+    .mechanic-icon {
+      display: block;
+      margin-bottom: 28px;
+      color: #ef4444;
+      font-size: 26px;
+    }
+    .mechanic-card small {
+      color: #ffffff55;
+      font-size: 8px;
+      letter-spacing: 0.17em;
+    }
+    .mechanic-card h3 {
+      margin-top: 9px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .mechanic-card p {
+      margin-top: 9px;
+      color: #ffffff60;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .diagnostic-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      align-items: center;
+      gap: 35px;
+      margin-top: 22px;
+      padding: 35px;
+      border: 1px solid #ffffff18;
+      background: #0d0d0d;
+    }
+    .diagnostic-banner h3 {
+      margin-top: 15px;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+    .diagnostic-banner > p {
+      color: #ffffff60;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+    .diagnostic-banner > a {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border-radius: 50%;
+      background: #dc2626;
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+    .diagnostic-banner > a:hover {
+      transform: rotate(45deg);
+    }
+    .process-line {
+      position: relative;
+    }
+    .process-step {
+      position: relative;
+      border-top: 1px solid #ffffff30;
+      padding-top: 22px;
+    }
+    .process-step > span {
+      color: #ef4444;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .process-step h3 {
+      margin-top: 25px;
+      font-size: 19px;
+      font-weight: 700;
+    }
+    .process-step p {
+      max-width: 230px;
+      margin-top: 10px;
+      color: #ffffff60;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      grid-template-rows: 250px 250px;
+      gap: 15px;
+    }
+    .gallery-item {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      background: #222;
+    }
+    .gallery-item:after {
+      position: absolute;
+      inset: 35% 0 0;
+      content: "";
+      background: linear-gradient(0deg, #000c, transparent);
+    }
+    .gallery-large {
+      grid-row: span 2;
+    }
+    .gallery-item > span {
+      position: absolute;
+      right: 22px;
+      bottom: 20px;
+      left: 22px;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+    .gallery-item small {
+      grid-column: 1/-1;
+      margin-bottom: 7px;
+      color: #ffffff9c;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+    }
+    .gallery-item strong {
+      font-size: 17px;
+    }
+    .gallery-item b {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid #ffffff80;
+      border-radius: 50%;
+      font-weight: 400;
+    }
+    .location-section {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      min-height: 560px;
+    }
+    .location-copy {
+      align-self: center;
+      padding: 90px max(30px, calc((100vw - 1240px) / 2));
+      padding-right: 55px;
+    }
+    .location-map {
+      position: relative;
+      min-height: 500px;
+      background: #1b1b1b;
+    }
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      border: 0;
+      filter: grayscale(1) invert(0.9) contrast(0.85);
+      opacity: 0.75;
+    }
+    .map-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 12px 15px;
+      background: #090909;
+      color: white;
+      font-size: 8px;
+      letter-spacing: 0.17em;
+    }
+    .final-cta {
+      border-top: 1px solid #ffffff12;
+    }
+    .cta-glow {
+      position: absolute;
+      top: -250px;
+      left: 50%;
+      width: 700px;
+      height: 600px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: #dc2626;
+      opacity: 0.09;
+      filter: blur(130px);
+    }
+    .cta-title {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 850;
+      line-height: 0.92;
+      letter-spacing: -0.07em;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 {
+      transition-delay: 0.12s;
+    }
+    .reveal-delay-2 {
+      transition-delay: 0.22s;
+    }
+    .reveal-delay-3 {
+      transition-delay: 0.32s;
+    }
+    @keyframes heroIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .service-feature {
+        grid-template-columns: 1fr;
+      }
+      .feature-image {
+        min-height: 480px;
+        max-height: 580px;
+      }
+      .feature-content {
+        padding: 75px 30px;
+      }
+      .location-section {
+        grid-template-columns: 1fr;
+      }
+      .location-copy {
+        padding: 75px 30px;
+      }
+      .location-map,
+      .location-map iframe {
+        min-height: 380px;
+      }
+      .diagnostic-banner {
+        grid-template-columns: 1fr auto;
+      }
+      .diagnostic-banner > p {
+        grid-column: 1/-1;
+        grid-row: 2;
+      }
+      .diagnostic-banner > a {
+        grid-column: 2;
+        grid-row: 1;
+      }
+    }
+    @media (max-width: 640px) {
+      .hero {
+        min-height: 690px;
+        height: 88svh;
+      }
+      .hero-title {
+        font-size: clamp(3.1rem, 15vw, 5rem);
+      }
+      .hero-shade {
+        background:
+          linear-gradient(90deg, #000b, #0005),
+          linear-gradient(0deg, #0009, transparent 55%);
+      }
+      .hero-index {
+        right: 24px;
+        bottom: 35px;
+      }
+      .section-pad {
+        padding-top: 78px;
+        padding-bottom: 78px;
+      }
+      .section-heading {
+        display: block;
+      }
+      .section-heading > p {
+        margin-top: 25px;
+      }
+      .specialty-media {
+        height: 235px;
+      }
+      .preventive-visual {
+        min-height: 480px;
+      }
+      .preventive-grid {
+        grid-template-columns: 1fr;
+      }
+      .preventive-item {
+        min-height: 120px;
+        padding: 20px 5px;
+      }
+      .preventive-note {
+        grid-column: 1;
+      }
+      .diagnostic-banner {
+        padding: 25px 20px;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 230px 190px;
+        gap: 9px;
+      }
+      .gallery-large {
+        grid-column: 1/-1;
+        grid-row: auto;
+      }
+      .gallery-item > span {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+      }
+      .gallery-item strong {
+        font-size: 12px;
+      }
+      .gallery-item small {
+        font-size: 7px;
+      }
+      .gallery-item b {
+        width: 28px;
+        height: 28px;
+      }
+      .image-caption {
+        left: 22px;
+        bottom: 22px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      :global(html) {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .insurance-home {
+      padding: 100px 24px;
+      background: #171717;
+      border-block: 1px solid #303030;
+    }
+
+    .insurance-home-content {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .insurance-home h2 {
+      max-width: 750px;
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin: 0 0 24px;
+    }
+
+    .insurance-home-content > p:not(.insurance-eyebrow) {
+      max-width: 650px;
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    .insurance-home-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .insurance-home {
+        padding: 70px 20px;
+      }
+    }
+  </style>
+
+  <script>
+    // Hero slider: pausa/reanuda los videos para evitar consumo innecesario.
+    const slides = Array.from(
+      document.querySelectorAll<HTMLElement>(".hero-slide"),
+    );
+    const dots = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".slider-dot"),
+    );
+    let activeSlide = 0;
+    let sliderTimer: ReturnType<typeof setInterval> | undefined;
+
+    function showSlide(index: number) {
+      if (!slides.length) return;
+      activeSlide = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, i) => {
+        const active = i === activeSlide;
+        slide.classList.toggle("is-active", active);
+        slide.setAttribute("aria-hidden", String(!active));
+        const video = slide.querySelector("video");
+        if (video) {
+          if (active) video.play().catch(() => {});
+          else video.pause();
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === activeSlide);
+        dot.setAttribute("aria-current", i === activeSlide ? "true" : "false");
+      });
+    }
+
+    function restartSlider() {
+      if (sliderTimer) clearInterval(sliderTimer);
+      if (slides.length > 1)
+        sliderTimer = setInterval(() => showSlide(activeSlide + 1), 9000);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        restartSlider();
+      });
+    });
+
+    if (slides.length) {
+      showSlide(0);
+      restartSlider();
+    }
+
+    // Animaciones de entrada al hacer scroll.
+    const revealItems = document.querySelectorAll<HTMLElement>(".reveal");
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -35px 0px" },
+      );
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
+
+    // Respeta la preferencia del visitante y pausa el slider si la pestaña no está visible.
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches && sliderTimer) clearInterval(sliderTimer);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        if (sliderTimer) clearInterval(sliderTimer);
+        slides.forEach((slide) => slide.querySelector("video")?.pause());
+      } else {
+        showSlide(activeSlide);
+        restartSlider();
+      }
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.astro/
+public/videos/
+*.mp4
+*.mov
+*.avi
+*.webm

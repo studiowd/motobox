@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getWhatsAppUrl } from '../../utils/whatsapp';
+
+const whatsappMotos = getWhatsAppUrl('motos');
+---
+
+<BaseLayout title="Mecánica de Motos" description="Service preventivo, diagnóstico electrónico JDiag, regulación de válvulas, transmisión y frenos en Taller Cantón.">
+  <section class="pt-32 pb-16 bg-[#141414] border-b border-[#262626]">
+    <div class="max-w-7xl mx-auto px-6 space-y-4">
+      <span class="font-emblem text-red-500 text-xs tracking-widest uppercase">Especialidad 02</span>
+      <h1 class="font-headline text-3xl md:text-5xl text-white">Mecánica de Motos</h1>
+      <p class="font-tech text-neutral-300 text-sm md:text-base max-w-2xl leading-relaxed">
+        Diagnóstico técnico avanzado y service preventivo especializado para motocicletas con rigor profesional.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-8">
+        <div class="space-y-4">
+          <h2 class="font-headline text-xl text-white">Servicios confirmados</h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-neutral-300">
+            <li class="card-industrial p-4">Service y mantenimiento preventivo</li>
+            <li class="card-industrial p-4">Cambio de aceite, filtros y bujías</li>
+            <li class="card-industrial p-4">Diagnóstico electrónico con scanner JDiag</li>
+            <li class="card-industrial p-4">Diagnóstico mecánico y prueba de compresión</li>
+            <li class="card-industrial p-4">Regulación de válvulas</li>
+            <li class="card-industrial p-4">Embrague</li>
+            <li class="card-industrial p-4">Transmisión: cadena, corona y piñón</li>
+            <li class="card-industrial p-4">Frenos y cálipers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-industrial p-6 space-y-6 h-fit">
+        <h3 class="font-headline text-white text-base">Consulta por WhatsApp</h3>
+        <p class="text-xs text-neutral-400 leading-relaxed">
+          Consulta disponibilidad y coordiná el service o diagnóstico de tu moto.
+        </p>
+        <a href={whatsappMotos} target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-headline text-xs py-4 transition-smooth">
+          Consultar mecánica de motos
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

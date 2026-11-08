@@ -1,0 +1,363 @@
+---
+const title = "Chapa y Pintura para Seguros en Hurlingham | Taller Cantón";
+const description =
+  "Taller de chapa y pintura en Hurlingham. Evaluación y reparación de daños por siniestros, con atención a particulares y coordinación con aseguradoras.";
+
+const whatsappMessage =
+  "Hola, quisiera consultar por una reparación de chapa y pintura por un siniestro. ¿Cómo es el procedimiento?";
+
+const whatsappUrl = `https://wa.me/541133419375?text=${encodeURIComponent(whatsappMessage)}`;
+
+const trabajos = [
+  {
+    number: "01",
+    title: "Evaluación de daños",
+    description:
+      "Revisión de las zonas afectadas para identificar daños visibles y determinar los trabajos de reparación necesarios.",
+  },
+  {
+    number: "02",
+    title: "Reparación de carrocería",
+    description:
+      "Reparación de piezas y paneles de carrocería. Cuando corresponde, se evalúa la necesidad de reemplazar componentes.",
+  },
+  {
+    number: "03",
+    title: "Chapa y pintura",
+    description:
+      "Preparación de superficies, reparación de imperfecciones y aplicación de pintura según las necesidades del vehículo.",
+  },
+  {
+    number: "04",
+    title: "Terminación",
+    description:
+      "Control visual, revisión de ajustes y terminaciones para entregar el vehículo en condiciones.",
+  },
+];
+
+const pasos = [
+  "Contacto inicial y descripción del siniestro.",
+  "Evaluación del vehículo y de los daños.",
+  "Definición de los trabajos necesarios.",
+  "Coordinación de la reparación y seguimiento.",
+];
+---
+
+<svelte:head>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+</svelte:head>
+
+<main class="insurance-page">
+  <section class="insurance-hero">
+    <div class="insurance-container">
+      <p class="insurance-eyebrow">TALLER CANTÓN / CHAPA Y PINTURA</p>
+
+      <h1>REPARACIÓN DE VEHÍCULOS POR SINIESTROS.</h1>
+
+      <p class="insurance-intro">
+        Evaluación de daños, reparación de carrocería y trabajos de pintura para
+        vehículos involucrados en accidentes. Atención a particulares y
+        coordinación de reparaciones con aseguradoras.
+      </p>
+
+      <div class="insurance-actions">
+        <a
+          class="insurance-button"
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consultar por WhatsApp
+        </a>
+        <a class="insurance-link" href="#proceso"> Conocer el proceso </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="insurance-work">
+    <div class="insurance-container">
+      <div class="insurance-section-heading">
+        <p class="insurance-eyebrow">SERVICIOS</p>
+        <h2>TRABAJOS DE CHAPA Y PINTURA.</h2>
+        <p>
+          Cada reparación se define a partir del estado del vehículo y de los
+          daños que presenta.
+        </p>
+      </div>
+
+      <div class="insurance-grid">
+        {
+          trabajos.map((trabajo) => (
+            <article class="insurance-card">
+              <span class="insurance-number">{trabajo.number}</span>
+              <h3>{trabajo.title}</h3>
+              <p>{trabajo.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="insurance-process" id="proceso">
+    <div class="insurance-container insurance-process-grid">
+      <div>
+        <p class="insurance-eyebrow">MODALIDAD DE ATENCIÓN</p>
+        <h2>UN PROCESO DE REPARACIÓN COORDINADO.</h2>
+        <p>
+          Recibimos consultas de propietarios de vehículos que necesitan reparar
+          daños por accidentes. También podemos coordinar trabajos con
+          aseguradoras y sus representantes, según el procedimiento
+          correspondiente a cada caso.
+        </p>
+      </div>
+
+      <ol class="insurance-steps">
+        {
+          pasos.map((paso, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{paso}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="insurance-contact">
+    <div class="insurance-container">
+      <p class="insurance-eyebrow">TALLER CANTÓN / HURLINGHAM</p>
+      <h2>¿TU VEHÍCULO TUVO UN SINIESTRO?</h2>
+      <p>
+        Contactanos y contanos qué ocurrió. Podés enviarnos fotografías del
+        vehículo por WhatsApp para iniciar la consulta.
+      </p>
+      <a
+        class="insurance-button"
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Consultar por mi vehículo
+      </a>
+      <p class="insurance-address">Centenera 908 · Hurlingham · Buenos Aires</p>
+    </div>
+  </section>
+</main>
+
+<style>
+  .insurance-page {
+    background: #111;
+    color: #f5f5f5;
+  }
+
+  .insurance-container {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .insurance-hero {
+    padding: clamp(100px, 15vw, 180px) 0 110px;
+    background: #171717;
+    border-bottom: 1px solid #303030;
+  }
+
+  .insurance-eyebrow {
+    color: #d22b32;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    margin-bottom: 22px;
+  }
+
+  .insurance-hero h1 {
+    max-width: 850px;
+    font-size: clamp(2.5rem, 7vw, 5.8rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    margin: 0;
+  }
+
+  .insurance-intro {
+    max-width: 690px;
+    color: #bcbcbc;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
+    margin-top: 30px;
+  }
+
+  .insurance-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 26px;
+    margin-top: 38px;
+  }
+
+  .insurance-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 52px;
+    padding: 0 25px;
+    background: #c9232c;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background 180ms ease;
+  }
+
+  .insurance-button:hover {
+    background: #a91d25;
+  }
+
+  .insurance-link {
+    color: #eee;
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+
+  .insurance-work,
+  .insurance-process {
+    padding: 100px 0;
+    border-bottom: 1px solid #303030;
+  }
+
+  .insurance-section-heading {
+    max-width: 650px;
+    margin-bottom: 45px;
+  }
+
+  .insurance-section-heading h2,
+  .insurance-process h2,
+  .insurance-contact h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin: 0 0 20px;
+  }
+
+  .insurance-section-heading > p:last-child,
+  .insurance-process-grid > div > p:last-child,
+  .insurance-contact > div > p:not(.insurance-eyebrow):not(.insurance-address) {
+    color: #aaa;
+    line-height: 1.8;
+  }
+
+  .insurance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .insurance-card {
+    padding: 30px;
+    min-height: 190px;
+    background: #191919;
+    border: 1px solid #303030;
+    transition:
+      border-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .insurance-card:hover {
+    border-color: #c9232c;
+    transform: translateY(-3px);
+  }
+
+  .insurance-number {
+    color: #d22b32;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .insurance-card h3 {
+    font-size: 1.25rem;
+    margin: 25px 0 12px;
+  }
+
+  .insurance-card p {
+    color: #aaa;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .insurance-process-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .insurance-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .insurance-steps li {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+  }
+
+  .insurance-steps li span {
+    color: #d22b32;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .insurance-steps li p {
+    color: #ddd;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .insurance-contact {
+    padding: 100px 0;
+    text-align: center;
+    background: #191919;
+  }
+
+  .insurance-contact h2 {
+    max-width: 750px;
+    margin-inline: auto;
+  }
+
+  .insurance-contact > div > p:not(.insurance-eyebrow):not(.insurance-address) {
+    max-width: 620px;
+    margin: 0 auto 30px;
+  }
+
+  .insurance-address {
+    color: #777;
+    font-size: 0.8rem;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 700px) {
+    .insurance-grid,
+    .insurance-process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .insurance-process-grid {
+      gap: 35px;
+    }
+
+    .insurance-work,
+    .insurance-process,
+    .insurance-contact {
+      padding: 70px 0;
+    }
+
+    .insurance-card {
+      min-height: auto;
+    }
+  }
+</style>

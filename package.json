@@ -1,0 +1,17 @@
+{
+  "name": "taller-canton",
+  "type": "module",
+  "version": "2.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^4.16.19"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.3.5"
+  }
+}
