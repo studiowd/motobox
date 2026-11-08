@@ -21,7 +21,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       <div class="hero-noise pointer-events-none absolute inset-0 z-[2]"></div>
 
       <div id="hero-slider" class="absolute inset-0">
-        <!-- SLIDE 1 / CHAPA Y PINTURA -->
         <article
           class="hero-slide is-active absolute inset-0"
           aria-hidden="false"
@@ -35,7 +34,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
             preload="metadata"
             poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/canton-amarok.jpeg"
           >
-            <!-- Reemplazar por tu video -->
             <source
               src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/videos/amarok-proceso.mp4"
               type="video/mp4"
@@ -83,7 +81,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
           </div>
         </article>
 
-        <!-- SLIDE 2 / SERVICE PREVENTIVO -->
         <article class="hero-slide absolute inset-0" aria-hidden="true">
           <video
             class="hero-video"
@@ -92,11 +89,10 @@ const whatsappGeneral = getWhatsAppUrl("general");
             loop
             playsinline
             preload="metadata"
-            poster="/images/hero-service-moto-poster.jpg"
+            poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/videos/8470700-uhd_3840_2160_25fps.mp4"
           >
-            <!-- Reemplazar por tu video -->
             <source
-              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/1333384-hd_1920_1080_30fps.mp4"
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/videos/8470700-uhd_3840_2160_25fps.mp4"
               type="video/mp4"
             />
           </video>
@@ -105,37 +101,38 @@ const whatsappGeneral = getWhatsAppUrl("general");
             class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 pb-20 pt-28 lg:px-12"
           >
             <div class="hero-copy max-w-3xl">
-              <p class="eyebrow"><span></span> TALLER CANTÓN / MANTENIMIENTO</p>
+              <p class="eyebrow">
+                <span></span> TALLER CANTÓN / TALLER INTEGRAL
+              </p>
               <h2 class="hero-title">
-                CUIDÁ TU MOTO.<br /><em>ANTICIPATE.</em>
+                CHAPA, PINTURA Y ESTÉTICA.<br /><em>CADA DETALLE IMPORTA.</em>
               </h2>
               <p
                 class="mt-6 max-w-xl text-base leading-8 text-white/70 md:text-lg"
               >
-                Service preventivo y controles fundamentales para mantener tu
-                moto en buenas condiciones y detectar desgastes a tiempo.
+                Especialistas en recuperación de superficies, carrocería y
+                pintura automotriz para autos y motos. Garantizamos uniformidad,
+                calidad y un acabado final impecable.
               </p>
               <div class="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   class="btn-primary"
-                  href={whatsappMotos}
+                  href={whatsappGeneral}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  >Consultar por service <span>↗</span></a
+                  rel="noopener noreferrer">Contactar ahora <span>↗</span></a
                 >
-                <a class="btn-ghost" href="#service-preventivo"
-                  >Ver mantenimiento <span>↓</span></a
+                <a class="btn-ghost" href="#servicios"
+                  >Ver servicios <span>↓</span></a
                 >
               </div>
             </div>
           </div>
           <div class="hero-index">
-            <strong>02</strong><span>/</span>03 <small>SERVICE PREVENTIVO</small
+            <strong>02</strong><span>/</span>03 <small
+              >CHAPA, PINTURA & ESTÉTICA</small
             >
           </div>
         </article>
-
-        <!-- SLIDE 3 / MECÁNICA Y DIAGNÓSTICO -->
         <article class="hero-slide absolute inset-0" aria-hidden="true">
           <video
             class="hero-video"
@@ -144,11 +141,10 @@ const whatsappGeneral = getWhatsAppUrl("general");
             loop
             playsinline
             preload="metadata"
-            poster="/images/hero-mecanica-poster.jpg"
+            poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/videos/ninja250rr.webp"
           >
-            <!-- Reemplazar por tu video -->
             <source
-              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/demo.mp4"
+              src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/videos/ninja250rr.webp"
               type="video/mp4"
             />
           </video>
@@ -158,31 +154,35 @@ const whatsappGeneral = getWhatsAppUrl("general");
           >
             <div class="hero-copy max-w-3xl">
               <p class="eyebrow"><span></span> TALLER CANTÓN / MECÁNICA</p>
+
               <h2 class="hero-title">
-                DIAGNOSTICAR<br />ANTES DE <em>CAMBIAR.</em>
+                SERVICIO PREVENTIVO<br />DE <em>MOTOS.</em>
               </h2>
+
               <p
                 class="mt-6 max-w-xl text-base leading-8 text-white/70 md:text-lg"
               >
-                Diagnóstico electrónico, revisión mecánica y mantenimiento
-                especializado. Primero buscamos el origen de la falla.
+                Mantenimiento integral basado estrictamente en el manual del
+                fabricante. Incluye escaneo electrónico, borrado de errores,
+                inyección, cambio de aceite, filtros y regulación de válvulas
+                según cada modelo.
               </p>
+
               <div class="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   class="btn-primary"
                   href={whatsappMotos}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  >Consultar por mecánica <span>↗</span></a
+                  rel="noopener noreferrer">Agendar service <span>↗</span></a
                 >
                 <a class="btn-ghost" href="#mecanica-motos"
-                  >Conocer servicios <span>↓</span></a
+                  >Ver especificaciones <span>↓</span></a
                 >
               </div>
             </div>
           </div>
           <div class="hero-index">
-            <strong>03</strong><span>/</span>03 <small>DIAGNÓSTICO</small>
+            <strong>03</strong><span>/</span>03 <small>MOTO SERVICE</small>
           </div>
         </article>
       </div>
@@ -216,9 +216,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         02. BARRA DE IDENTIDAD / PROPUESTA
-    ========================================================== -->
     <section class="border-y border-white/10 bg-[#111]">
       <div
         class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 px-6 md:grid-cols-4 md:divide-y-0 lg:px-12"
@@ -254,10 +251,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         03. ESPECIALIDADES
-    ========================================================== -->
-
     <section id="especialidades" class="section-pad bg-[#0b0b0b]">
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <!-- ENCABEZADO -->
@@ -266,8 +259,8 @@ const whatsappGeneral = getWhatsAppUrl("general");
             <p class="eyebrow"><span></span> QUÉ HACEMOS</p>
 
             <h2 class="section-title">
-              UN TALLER.<br />
-              <em>DISTINTAS ESPECIALIDADES.</em>
+              Canton Motos <br />
+              <em>Taller Canton</em>
             </h2>
           </div>
 
@@ -278,9 +271,7 @@ const whatsappGeneral = getWhatsAppUrl("general");
           </p>
         </div>
 
-        <!-- ESPECIALIDADES -->
         <div class="mt-14 grid gap-5 lg:grid-cols-3">
-          <!-- 01 / CHAPA Y PINTURA -->
           <a href="/chapa-y-pintura/" class="specialty-card reveal">
             <div class="specialty-media">
               <img
@@ -306,7 +297,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
             </div>
           </a>
 
-          <!-- 02 / MECÁNICA INTEGRAL DE MOTOS -->
           <a
             href="/mecanica-de-motos/"
             class="specialty-card reveal reveal-delay-1"
@@ -365,13 +355,8 @@ const whatsappGeneral = getWhatsAppUrl("general");
         </div>
       </div>
     </section>
-
-    <!-- =========================================================
-         04. CHAPA Y PINTURA
-    ========================================================== -->
-    <section id="chapa-pintura" class="service-feature bg-[#111]">
+    <section id="chapa-pintura" class="service-feature bg-[rgb(17,17,17)]">
       <div class="feature-image reveal">
-        <!-- Imagen o video propio: /images/chapa-proceso.jpg -->
         <img
           src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/male-painter-hazmat-suit-inside-car-shop.jpg"
           alt="Proceso de reparación de carrocería"
@@ -443,9 +428,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         05. SERVICE PREVENTIVO DE MOTOS
-    ========================================================== -->
     <section id="service-preventivo" class="section-pad bg-[#090909]">
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="section-heading reveal">
@@ -463,7 +445,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
 
         <div class="mt-14 grid gap-8 lg:grid-cols-[.85fr_1.15fr]">
           <div class="preventive-visual reveal">
-            <!-- Video propio opcional: reemplazar poster y source -->
             <video
               autoplay
               muted
@@ -590,7 +571,7 @@ const whatsappGeneral = getWhatsAppUrl("general");
                 rel="noopener noreferrer"
               >
                 Consultar por un siniestro <span>↗</span>
-              </a>q
+              </a>
             </div>
           </div>
 
@@ -649,9 +630,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         07. PROCESO DE TRABAJO
-    ========================================================== -->
     <section class="section-pad bg-[#090909]">
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="max-w-2xl reveal">
@@ -685,10 +663,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         08. GALERÍA / TRABAJOS
-         Reemplazar imágenes y videos por material propio.
-    ========================================================== -->
     <section class="gallery-section bg-[#111] py-24 md:py-28">
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="section-heading reveal">
@@ -714,7 +688,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
               preload="metadata"
               poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/chapa/canton-amarok.jpeg"
             >
-              <!-- Reemplazar por tu video -->
               <source
                 src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/amarok.mp4"
                 type="video/mp4"
@@ -761,9 +734,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         09. UBICACIÓN
-    ========================================================== -->
     <section class="location-section bg-[#090909]">
       <div class="location-copy reveal">
         <p class="eyebrow"><span></span> DÓNDE ESTAMOS</p>
@@ -800,9 +770,6 @@ const whatsappGeneral = getWhatsAppUrl("general");
       </div>
     </section>
 
-    <!-- =========================================================
-         10. CTA FINAL
-    ========================================================== -->
     <section class="final-cta relative overflow-hidden bg-[#171717]">
       <div class="cta-glow"></div>
       <div
@@ -887,7 +854,7 @@ const whatsappGeneral = getWhatsAppUrl("general");
     }
     .hero-title {
       margin-top: 1.5rem;
-      font-size: clamp(3.3rem, 8vw, 7.7rem);
+      font-size: clamp(3.3rem, 8vw, 3.7rem);
       font-weight: 800;
       line-height: 0.91;
       letter-spacing: -0.065em;

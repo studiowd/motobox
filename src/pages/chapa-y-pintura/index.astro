@@ -1,48 +1,378 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getWhatsAppUrl } from '../../utils/whatsapp';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getWhatsAppUrl } from "../../utils/whatsapp";
 
-const whatsappChapa = getWhatsAppUrl('chapa');
+const whatsappChapa = getWhatsAppUrl("chapa");
 ---
 
-<BaseLayout title="Chapa y Pintura" description="Especialistas en reparación de choques, paneles metálicos, preparación de superficies y pintura integral en Taller Cantón.">
-  <section class="pt-32 pb-16 bg-[#141414] border-b border-[#262626]">
-    <div class="max-w-7xl mx-auto px-6 space-y-4">
-      <span class="font-emblem text-red-500 text-xs tracking-widest uppercase">Especialidad 01</span>
-      <h1 class="font-headline text-3xl md:text-5xl text-white">Chapa y Pintura</h1>
-      <p class="font-tech text-neutral-300 text-sm md:text-base max-w-2xl leading-relaxed">
-        Reparación de carrocería, paneles metálicos, preparación de superficies y pintura con acabados de máxima fidelidad técnica.
-      </p>
-    </div>
-  </section>
+<BaseLayout
+  title="Chapa y Pintura | Taller Cantón"
+  description="Especialistas en restauración de carrocería y pintura de máxima precisión en Hurlingham."
+>
+  <!-- Carga del CDN de tsparticles para las partículas animadas -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3.3.0/tsparticles.slim.bundle.min.js"
+    defer></script>
 
-  <section class="py-20 bg-[#0a0a0a]">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="lg:col-span-2 space-y-8">
-        <div class="space-y-4">
-          <h2 class="font-headline text-xl text-white">Servicios confirmados</h2>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-neutral-300">
-            <li class="card-industrial p-4">Reparación de choques y siniestros</li>
-            <li class="card-industrial p-4">Reparación de golpes y abolladuras (chapa convencional)</li>
-            <li class="card-industrial p-4">Reparación de paneles metálicos</li>
-            <li class="card-industrial p-4">Puertas, capot, guardabarros y laterales</li>
-            <li class="card-industrial p-4">Preparación de superficies, lijado y masillado</li>
-            <li class="card-industrial p-4">Pintura integral, parcial y por piezas</li>
-            <li class="card-industrial p-4">Retoques y restauración de carrocería</li>
-            <li class="card-industrial p-4">Reemplazo de paneles sujeto a evaluación</li>
-          </ul>
+  <!-- HERO SECTION CON FONDO DE PARTÍCULAS ANIMADAS -->
+  <section
+    class="relative pt-44 pb-28 bg-[#0a0a0a] overflow-hidden border-b border-[#262626]"
+  >
+    <!-- Contenedor de partículas animadas de fondo -->
+    <div id="tsparticles" class="absolute inset-0 pointer-events-auto z-0">
+    </div>
+
+    <!-- Luces de ambiente sutiles -->
+    <div
+      class="absolute top-1/4 -left-20 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none"
+    >
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+    >
+      <div class="space-y-6">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 bg-red-600/10 border border-red-600/30 rounded-full"
+        >
+          <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+          <span
+            class="font-emblem text-red-500 text-[10px] tracking-widest uppercase"
+            >MIRA</span
+          >
+        </div>
+        <h1
+          class="font-headline text-4xl sm:text-5xl text-white tracking-tight leading-none"
+        >
+          RESTAURACIÓN <br /><span
+            class="text-red-600 drop-shadow-[0_0_25px_rgba(220,38,38,0.4)]"
+            >Y ACABADO</span
+          >
+        </h1>
+        <p
+          class="font-tech text-neutral-300 text-sm sm:text-base leading-relaxed"
+        >
+          Devolvemos la estructura original y la perfección estética a tu
+          vehículo. trabajos de chapa y pintura , con atención a particulares y
+          coordinación con aseguradoras.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a
+            href={whatsappChapa}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-red-600 hover:bg-red-700 text-white font-headline text-xs px-8 py-4 transition-smooth shadow-lg shadow-red-600/30 hover:scale-105"
+          >
+            Cotizar por WhatsApp
+          </a>
+          <a
+            href="#proceso"
+            class="border border-[#333] hover:border-red-600/50 text-neutral-300 font-headline text-xs px-8 py-4 transition-smooth flex items-center gap-2 group"
+          >
+            Ver el método <span
+              class="group-hover:translate-y-1 transition-transform">↓</span
+            >
+          </a>
         </div>
       </div>
 
-      <div class="card-industrial p-6 space-y-6 h-fit">
-        <h3 class="font-headline text-white text-base">Consulta por WhatsApp</h3>
-        <p class="text-xs text-neutral-400 leading-relaxed">
-          Comunícate directamente para coordinar una evaluación de tu vehículo en nuestro taller de Hurlingham.
+      <!-- Video Principal Hero con Hover Play -->
+      <div
+        class="card-industrial p-3 relative aspect-video rounded-xl overflow-hidden group border border-neutral-800 hover:border-red-600/40 transition-all shadow-2xl z-10"
+      >
+        <video
+          class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-700"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="/images/poster-hero.jpg"
+        >
+          <source src="/videos/taller-hero.mp4" type="video/mp4" />
+          Tu navegador no soporta videos HTML5.
+        </video>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"
+        >
+        </div>
+        <div
+          class="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-end"
+        >
+          <div>
+            <span
+              class="font-emblem text-red-500 text-[10px] uppercase tracking-widest bg-black/60 px-2 py-1 border border-red-600/30"
+            >
+            </span>
+            <h3 class="font-headline text-lg text-white mt-1">
+              Simetría y color original de fábrica
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE VIDEOS INTERACTIVOS (HOVER TO PLAY) -->
+  <section id="proceso" class="py-24 bg-[#0d0d0d] relative">
+    <div class="max-w-7xl mx-auto px-6 space-y-16">
+      <div class="text-center max-w-2xl mx-auto space-y-4">
+        <span class="font-emblem text-red-500 text-xs tracking-widest uppercase"
+          >Tecnología en Acción</span
+        >
+        <h2 class="font-headline text-3xl text-white">
+          Los pasos de nuestro proceso de chapa y pintura
+        </h2>
+        <p class="text-xs text-neutral-400">
+          Pasá el cursor sobre cada etapa para ver los videos reales del taller
+          en funcionamiento.
         </p>
-        <a href={whatsappChapa} target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-headline text-xs py-4 transition-smooth">
-          Consultar chapa y pintura
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Video Card 1 -->
+        <div
+          class="card-industrial p-4 space-y-4 relative overflow-hidden group border border-neutral-800 hover:border-red-600/60 transition-all"
+        >
+          <div
+            class="relative aspect-video rounded-lg overflow-hidden bg-neutral-900"
+          >
+            <video
+              class="video-hover w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster="/images/poster-paso1.jpg"
+            >
+              <source src="/videos/paso1-chapa.mp4" type="video/mp4" />
+            </video>
+            <div
+              class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors pointer-events-none flex items-center justify-center"
+            >
+              <span
+                class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
+              >
+                ▶ Hover para ver
+              </span>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="font-emblem text-red-500 text-[10px]">ETAPA 01</span>
+            <h3 class="font-headline text-sm text-white">
+              Reparación y Desabollado
+            </h3>
+            <p class="text-[11px] text-neutral-400">
+              Corrección artesanal y minuciosa de piezas y carrocería.
+            </p>
+          </div>
+        </div>
+
+        <!-- Video Card 2 -->
+        <div
+          class="card-industrial p-4 space-y-4 relative overflow-hidden group border border-neutral-800 hover:border-red-600/60 transition-all"
+        >
+          <div
+            class="relative aspect-video rounded-lg overflow-hidden bg-neutral-900"
+          >
+            <video
+              class="video-hover w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster="/images/poster-paso2.jpg"
+            >
+              <source src="/videos/paso2-preparacion.mp4" type="video/mp4" />
+            </video>
+            <div
+              class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors pointer-events-none flex items-center justify-center"
+            >
+              <span
+                class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
+              >
+                ▶ Hover para ver
+              </span>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="font-emblem text-red-500 text-[10px]">ETAPA 02</span>
+            <h3 class="font-headline text-sm text-white">Preparación y Base</h3>
+            <p class="text-[11px] text-neutral-400">
+              Lijado detallado, nivelación y aplicación de fondo protector.
+            </p>
+          </div>
+        </div>
+
+        <!-- Video Card 3 -->
+        <div
+          class="card-industrial p-4 space-y-4 relative overflow-hidden group border border-neutral-800 hover:border-red-600/60 transition-all"
+        >
+          <div
+            class="relative aspect-video rounded-lg overflow-hidden bg-neutral-900"
+          >
+            <video
+              class="video-hover w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster="/images/poster-paso3.jpg"
+            >
+              <source src="/videos/paso3-pintura.mp4" type="video/mp4" />
+            </video>
+            <div
+              class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors pointer-events-none flex items-center justify-center"
+            >
+              <span
+                class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
+              >
+                ▶ Hover para ver
+              </span>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="font-emblem text-red-500 text-[10px]">ETAPA 03</span>
+            <h3 class="font-headline text-sm text-white">
+              Pintura y Terminación
+            </h3>
+            <p class="text-[11px] text-neutral-400">
+              Aplicación de color de alta calidad y acabado estético superior.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE SEGUROS Y LLAMADO A LA ACCIÓN -->
+  <section
+    class="py-24 bg-[#0a0a0a] border-t border-[#262626] relative overflow-hidden"
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10"
+    >
+      <div class="space-y-6">
+        <span class="font-emblem text-red-500 text-xs tracking-widest uppercase"
+          >Respaldo y Cobertura</span
+        >
+        <h2 class="font-headline text-2xl md:text-3xl text-white">
+          Trabajamos con siniestros y compañías de seguros
+        </h2>
+        <p class="text-xs text-neutral-300 leading-relaxed">
+          Armamos presupuestos detallados y documentación técnica para que
+          puedas presentar ante tu aseguradora de forma rápida y sin vueltas.
+        </p>
+        <ul class="space-y-3 text-xs text-neutral-300">
+          <li class="flex items-center gap-2">
+            ✓ Reemplazo y reparación de paneles sujetos a evaluación
+          </li>
+          <li class="flex items-center gap-2">
+            ✓ Reparación de choques y siniestros de distinta magnitud
+          </li>
+          <li class="flex items-center gap-2">
+            ✓ Garantía escrita de terminación y materiales
+          </li>
+        </ul>
+      </div>
+
+      <div
+        class="card-industrial p-8 space-y-6 bg-gradient-to-br from-[#141414] to-[#0a0a0a] border-red-600/45 shadow-[0_0_30px_rgba(220,38,38,0.15)]"
+      >
+        <div class="space-y-2">
+          <span
+            class="font-emblem text-red-500 text-[10px] uppercase tracking-widest"
+            >Atención Inmediata</span
+          >
+          <h3 class="font-headline text-xl text-white">
+            ¿Tenés fotos del daño de tu vehículo?
+          </h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Mandanos un mensaje directo por WhatsApp con las imágenes y te damos
+            una estimación orientativa al instante.
+          </p>
+        </div>
+        <a
+          href={whatsappChapa}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-headline text-xs py-4 transition-smooth shadow-lg shadow-red-600/30 hover:scale-[1.02]"
+        >
+          Enviar fotos por WhatsApp
         </a>
       </div>
     </div>
   </section>
+
+  <!-- Script combinado: Partículas animadas + Videos Hover -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Inicializar tsParticles en el fondo del Hero
+      if (window.tsParticles) {
+        window.tsParticles.load({
+          id: "tsparticles",
+          options: {
+            background: {
+              color: { value: "transparent" },
+            },
+            fpsLimit: 60,
+            interactivity: {
+              events: {
+                onHover: {
+                  enable: true,
+                  mode: "repulse", // Las partículas se apartan sutilmente al pasar el mouse
+                },
+              },
+              modes: {
+                repulse: { distance: 80, duration: 0.4 },
+              },
+            },
+            particles: {
+              color: { value: ["#dc2626", "#ffffff", "#525252"] }, // Tonos rojos, blancos y grises industriales
+              links: {
+                color: "#dc2626",
+                distance: 130,
+                enable: true,
+                opacity: 0.15,
+                width: 1,
+              },
+              move: {
+                enable: true,
+                speed: 1.2,
+                direction: "none",
+                random: true,
+                straight: false,
+                outModes: { default: "out" },
+              },
+              number: {
+                density: { enable: true, area: 900 },
+                value: 45, // Cantidad justa para que luzca limpio y elegante
+              },
+              opacity: {
+                value: { min: 0.2, max: 0.7 },
+              },
+              size: {
+                value: { min: 1, max: 3 },
+              },
+            },
+            detectRetina: true,
+          },
+        });
+      }
+
+      // 2. Control de Videos en Hover (Play / Pause)
+      const videoCards = document.querySelectorAll(".group");
+      videoCards.forEach((card) => {
+        const video = card.querySelector(".video-hover") as HTMLVideoElement;
+        if (video) {
+          card.addEventListener("mouseenter", () => {
+            video.play().catch(() => {});
+          });
+          card.addEventListener("mouseleave", () => {
+            video.pause();
+            video.currentTime = 0;
+          });
+        }
+      });
+    });
+  </script>
 </BaseLayout>
