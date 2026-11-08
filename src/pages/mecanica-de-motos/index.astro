@@ -1,24 +1,24 @@
----
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { getWhatsAppUrl } from "../utils/whatsapp";
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getWhatsAppUrl } from "../../utils/whatsapp";
 
-const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu utils
+const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" segÃºn tu utils
 ---
 
 <BaseLayout
-  title="Mecánica de Motos y Service Preventivo | Taller Cantón"
-  description="Especialistas en mecánica integral, service preventivo, afinación y alta performance para motos en Hurlingham."
+  title="MecÃ¡nica de Motos y Service Preventivo | Taller CantÃ³n"
+  description="Especialistas en mecÃ¡nica integral, service preventivo, afinaciÃ³n y alta performance para motos en Hurlingham."
 >
-  <!-- Carga del CDN de tsparticles para las partículas animadas -->
+  <!-- Carga del CDN de tsparticles para las partÃ­culas animadas -->
   <script
     src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3.3.0/tsparticles.slim.bundle.min.js"
     defer></script>
 
-  <!-- HERO SECTION CON FONDO DE PARTÍCULAS ANIMADAS -->
+  <!-- HERO SECTION CON FONDO DE PARTÃCULAS ANIMADAS -->
   <section
     class="relative pt-44 pb-28 bg-[#0a0a0a] overflow-hidden border-b border-[#262626]"
   >
-    <!-- Contenedor de partículas animadas de fondo -->
+    <!-- Contenedor de partÃ­culas animadas de fondo -->
     <div id="tsparticles" class="absolute inset-0 pointer-events-auto z-0">
     </div>
 
@@ -38,13 +38,13 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
           <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
           <span
             class="font-emblem text-red-500 text-[10px] tracking-widest uppercase"
-            >Diagnóstico y Performance</span
+            >DiagnÃ³stico y Performance</span
           >
         </div>
         <h1
           class="font-headline text-4xl sm:text-5xl text-white tracking-tight leading-none"
         >
-          MECÁNICA INTEGRAL <br /><span
+          MECÃNICA INTEGRAL <br /><span
             class="text-red-600 drop-shadow-[0_0_25px_rgba(220,38,38,0.4)]"
             >Y SERVICIO PREVENTIVO</span
           >
@@ -52,8 +52,8 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
         <p
           class="font-tech text-neutral-300 text-sm sm:text-base leading-relaxed"
         >
-          Mantenimiento preventivo, service y mecánica general para tu moto.
-          Diagnóstico computarizado y atención especializada en Zona Oeste
+          Mantenimiento preventivo, service y mecÃ¡nica general para tu moto.
+          DiagnÃ³stico computarizado y atenciÃ³n especializada en Zona Oeste
         </p>
         <div class="flex flex-wrap gap-4 pt-4">
           <a
@@ -69,7 +69,7 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
             class="border border-[#333] hover:border-red-600/50 text-neutral-300 font-headline text-xs px-8 py-4 transition-smooth flex items-center gap-2 group"
           >
             Ver servicios <span
-              class="group-hover:translate-y-1 transition-transform">↓</span
+              class="group-hover:translate-y-1 transition-transform">â†“</span
             >
           </a>
         </div>
@@ -100,10 +100,10 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
           <div>
             <span
               class="font-emblem text-red-500 text-[10px] uppercase tracking-widest bg-black/60 px-2 py-1 border border-red-600/30"
-              >Banco y Escáner</span
+              >Banco y EscÃ¡ner</span
             >
             <h3 class="font-headline text-lg text-white mt-1">
-              Precisión milimétrica en cada motor
+              PrecisiÃ³n milimÃ©trica en cada motor
             </h3>
           </div>
         </div>
@@ -111,17 +111,17 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
     </div>
   </section>
 
-  <!-- SECCIÓN DE SERVICIOS / VIDEOS INTERACTIVOS (HOVER TO PLAY) -->
+  <!-- SECCIÃ“N DE SERVICIOS / VIDEOS INTERACTIVOS (HOVER TO PLAY) -->
   <section id="servicios" class="py-24 bg-[#0d0d0d] relative">
     <div class="max-w-7xl mx-auto px-6 space-y-16">
       <div class="text-center max-w-2xl mx-auto space-y-4">
         <span class="font-emblem text-red-500 text-xs tracking-widest uppercase"
           >Especialidades del Taller</span
         >
-        <h2 class="font-headline text-3xl text-white">Service y Mecánica</h2>
+        <h2 class="font-headline text-3xl text-white">Service y MecÃ¡nica</h2>
         <p class="text-xs text-neutral-400">
-          Pasá el cursor sobre cada categoría para conocer cómo cuidamos el
-          corazón de tu moto.
+          PasÃ¡ el cursor sobre cada categorÃ­a para conocer cÃ³mo cuidamos el
+          corazÃ³n de tu moto.
         </p>
       </div>
 
@@ -149,7 +149,7 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
               <span
                 class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
               >
-                ▶
+                â–¶
               </span>
             </div>
           </div>
@@ -159,7 +159,7 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
             >
             <h3 class="font-headline text-sm text-white">Service Preventivo</h3>
             <p class="text-[11px] text-neutral-400">
-              Cambio de aceites , filtros, revisión de transmisión y niveles
+              Cambio de aceites , filtros, revisiÃ³n de transmisiÃ³n y niveles
               generales.
             </p>
           </div>
@@ -188,7 +188,7 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
               <span
                 class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
               >
-                ▶
+                â–¶
               </span>
             </div>
           </div>
@@ -197,11 +197,11 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
               >02 / SEGURIDAD</span
             >
             <h3 class="font-headline text-sm text-white">
-              Frenos y Transmisión
+              Frenos y TransmisiÃ³n
             </h3>
             <p class="text-[11px] text-neutral-400">
-              Mantenimiento preventivo de frenos y transmisión, Remplazo de
-              pastillas, discos y líquido de frenos.
+              Mantenimiento preventivo de frenos y transmisiÃ³n, Remplazo de
+              pastillas, discos y lÃ­quido de frenos.
             </p>
           </div>
         </div>
@@ -229,7 +229,7 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
               <span
                 class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
               >
-                ▶
+                â–¶
               </span>
             </div>
           </div>
@@ -237,10 +237,10 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
             <span class="font-emblem text-red-500 text-[10px]"
               >03 / AVANZADO</span
             >
-            <h3 class="font-headline text-sm text-white">Inyección y Motor</h3>
+            <h3 class="font-headline text-sm text-white">InyecciÃ³n y Motor</h3>
             <p class="text-[11px] text-neutral-400">
-              Limpieza de cuerpos de mariposa, sincronización, escáner y
-              reparación.
+              Limpieza de cuerpos de mariposa, sincronizaciÃ³n, escÃ¡ner y
+              reparaciÃ³n.
             </p>
           </div>
         </div>
@@ -248,7 +248,7 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
     </div>
   </section>
 
-  <!-- SECCIÓN DE BENEFICIOS Y LLAMADO A LA ACCIÓN -->
+  <!-- SECCIÃ“N DE BENEFICIOS Y LLAMADO A LA ACCIÃ“N -->
   <section
     class="py-24 bg-[#0a0a0a] border-t border-[#262626] relative overflow-hidden"
   >
@@ -260,22 +260,22 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
           >Calidad y Transparencia</span
         >
         <h2 class="font-headline text-2xl md:text-3xl text-white">
-          ¿Por qué confiar la mecánica de tu moto en Taller Cantón?
+          Â¿Por quÃ© confiar la mecÃ¡nica de tu moto en Taller CantÃ³n?
         </h2>
         <p class="text-xs text-neutral-300 leading-relaxed">
           Sabemos lo que significa tu moto para vos. Por eso trabajamos con
           orden, herramientas profesionales y te avisamos cada detalle antes de
-          avanzar con cualquier reparación.
+          avanzar con cualquier reparaciÃ³n.
         </p>
         <ul class="space-y-3 text-xs text-neutral-300">
           <li class="flex items-center gap-2">
-            ✓ Uso exclusivo de torquímetros y herramientas calibradas
+            âœ“ Uso exclusivo de torquÃ­metros y herramientas calibradas
           </li>
           <li class="flex items-center gap-2">
-            ✓ Insumos de primera línea (lubricantes sintéticos certificados)
+            âœ“ Insumos de primera lÃ­nea (lubricantes sintÃ©ticos certificados)
           </li>
           <li class="flex items-center gap-2">
-            ✓ Presupuestos claros y sin sorpresas
+            âœ“ Presupuestos claros y sin sorpresas
           </li>
         </ul>
       </div>
@@ -286,13 +286,13 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
         <div class="space-y-2">
           <span
             class="font-emblem text-red-500 text-[10px] uppercase tracking-widest"
-            >Coordiná tu Servicio</span
+            >CoordinÃ¡ tu Servicio</span
           >
           <h3 class="font-headline text-xl text-white">
-            ¿Le toca el service o querés revisar una falla?
+            Â¿Le toca el service o querÃ©s revisar una falla?
           </h3>
           <p class="text-xs text-neutral-400 leading-relaxed">
-            Escribinos contándonos marca, modelo y kilometraje de tu moto para
+            Escribinos contÃ¡ndonos marca, modelo y kilometraje de tu moto para
             agilizar el presupuesto y el turno.
           </p>
         </div>
@@ -307,77 +307,76 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
       </div>
     </div>
   </section>
-
-  <!-- Script combinado: Partículas animadas + Videos Hover -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // 1. Inicializar tsParticles en el fondo del Hero
-      if (window.tsParticles) {
-        window.tsParticles.load({
-          id: "tsparticles",
-          options: {
-            background: {
-              color: { value: "transparent" },
-            },
-            fpsLimit: 60,
-            interactivity: {
-              events: {
-                onHover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-              },
-              modes: {
-                repulse: { distance: 80, duration: 0.4 },
-              },
-            },
-            particles: {
-              color: { value: ["#dc2626", "#ffffff", "#525252"] },
-              links: {
-                color: "#dc2626",
-                distance: 130,
-                enable: true,
-                opacity: 0.15,
-                width: 1,
-              },
-              move: {
-                enable: true,
-                speed: 1.2,
-                direction: "none",
-                random: true,
-                straight: false,
-                outModes: { default: "out" },
-              },
-              number: {
-                density: { enable: true, area: 900 },
-                value: 45,
-              },
-              opacity: {
-                value: { min: 0.2, max: 0.7 },
-              },
-              size: {
-                value: { min: 1, max: 3 },
-              },
-            },
-            detectRetina: true,
+</BaseLayout>
+<!-- Script combinado: PartÃ­culas animadas + Videos Hover -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Inicializar tsParticles en el fondo del Hero
+    if (window.tsParticles) {
+      window.tsParticles.load({
+        id: "tsparticles",
+        options: {
+          background: {
+            color: { value: "transparent" },
           },
+          fpsLimit: 60,
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+            },
+            modes: {
+              repulse: { distance: 80, duration: 0.4 },
+            },
+          },
+          particles: {
+            color: { value: ["#dc2626", "#ffffff", "#525252"] },
+            links: {
+              color: "#dc2626",
+              distance: 130,
+              enable: true,
+              opacity: 0.15,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 1.2,
+              direction: "none",
+              random: true,
+              straight: false,
+              outModes: { default: "out" },
+            },
+            number: {
+              density: { enable: true, area: 900 },
+              value: 45,
+            },
+            opacity: {
+              value: { min: 0.2, max: 0.7 },
+            },
+            size: {
+              value: { min: 1, max: 3 },
+            },
+          },
+          detectRetina: true,
+        },
+      });
+    }
+
+    // 2. Control de Videos en Hover (Play / Pause)
+    const videoCards = document.querySelectorAll(".group");
+    videoCards.forEach((card) => {
+      const video = card.querySelector(".video-hover") as HTMLVideoElement;
+      if (video) {
+        card.addEventListener("mouseenter", () => {
+          video.play().catch(() => {});
+        });
+        card.addEventListener("mouseleave", () => {
+          video.pause();
+          video.currentTime = 0;
         });
       }
-
-      // 2. Control de Videos en Hover (Play / Pause)
-      const videoCards = document.querySelectorAll(".group");
-      videoCards.forEach((card) => {
-        const video = card.querySelector(".video-hover") as HTMLVideoElement;
-        if (video) {
-          card.addEventListener("mouseenter", () => {
-            video.play().catch(() => {});
-          });
-          card.addEventListener("mouseleave", () => {
-            video.pause();
-            video.currentTime = 0;
-          });
-        }
-      });
     });
-  </script>
-</BaseLayout>
+  });
+</script>
