@@ -7,8 +7,57 @@ const whatsappMotos = getWhatsAppUrl("motos");
 const whatsappEstetica = getWhatsAppUrl("estetica");
 const whatsappTurno = getWhatsAppUrl("turno");
 const whatsappGeneral = getWhatsAppUrl("general");
+const GA_ID = "G-S1FXGSQRF4";
 ---
 
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+></script>
+
+<script define:vars={{ GA_ID }}>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+
+  window.gtag = gtag;
+
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+</script>
+<script>
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+
+    if (!(target instanceof Element)) return;
+
+    const link = target.closest("a");
+
+    if (!link) return;
+
+    const href = link.getAttribute("href") || "";
+    const label = link.innerText.trim();
+
+    let category = "";
+
+    if (/wa\.me|whatsapp\.com/i.test(href)) {
+      category = "whatsapp";
+    } else if (/maps\.google|google\.com\/maps/i.test(href)) {
+      category = "maps";
+    } else if (href.startsWith("tel:")) {
+      category = "phone";
+    }
+
+    if (!category || typeof window.gtag !== "function") return;
+
+    window.gtag("event", "contact_click", {
+      contact_type: category,
+      link_text: label,
+      page_location: window.location.href,
+      page_domain: window.location.hostname,
+    });
+  });
+</script>
 <BaseLayout
   title="Taller Cantón | Chapa y pintura, mecánica y service de motos"
   description="Taller Cantón en Hurlingham. Chapa y pintura, mantenimiento preventivo, mecánica y diagnóstico de motos. Atención coordinada por turno."
