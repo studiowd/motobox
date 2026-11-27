@@ -1,370 +1,1215 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getWhatsAppUrl } from "../../utils/whatsapp";
-import { tsParticles } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu utils
+
+const whatsappMecanica = getWhatsAppUrl("mecanica");
+
+// 1. CONFIGURACIÓN CENTRAL DE MARCA, REDES Y HORARIOS
+const SITE_URL = "https://tallercanton.com.ar"; // Ajustá si tu dominio definitivo es otro
+
+const redes = {
+  instagram: "https://www.instagram.com/motoboxcanton/",
+  instagramReels: "https://www.instagram.com/motoboxcanton/reels/",
+  tiktok: "https://www.tiktok.com/@motoboxcanton",
+  maps: "https://maps.app.goo.gl/yKuUTL5EUiTeFoF6A",
+  webPadre: "/",
+  whatsapp: whatsappMecanica,
+  telefonoVisible: "11 2178-7278",
+  direccion: "Centenera 908, Hurlingham, Buenos Aires",
+  horariosCortos: "Lun a Vie 9 a 18 hs • Sáb 9 a 13 hs",
+};
+
+// 2. NAVEGACIÓN INTERNA SCROLLEABLE DE MOTO BOX
+const navInterna = [
+  { id: "inicio", label: "Inicio" },
+  { id: "servicios", label: "Servicios" },
+  { id: "trabajos", label: "Nuestro Trabajo" },
+  { id: "taller", label: "El Taller" },
+  { id: "redes", label: "Redes" },
+];
+
+// 3. ACCESOS RÁPIDOS INTERACTIVOS DEL HERO (Todos scrollean directo dentro de la página)
+const accesosHero = [
+  { label: "Mecánica Integral", href: "#servicio-motor" },
+  { label: "Service Preventivo", href: "#servicio-preventivo" },
+  { label: "Scanner JDiag M400", href: "#servicio-scanner" },
+  { label: "Pintura y Estética", href: "#servicio-estetica" },
+];
+
+// 4. GRILLA DE 6 SERVICIOS DE MOTO BOX (3 filas x 2 columnas)
+const servicios = [
+  {
+    id: "servicio-preventivo",
+    titulo: "Service Preventivo",
+    subtitulo: "Mantenimiento según manual para tu moto",
+    icono: "wrench",
+    poster:
+      "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp",
+    video: "/videos/service-preventivo.mp4",
+    mediaClass: "opacity-90",
+    items: [
+      "Cambio de aceites sintéticos certificados",
+      "Reemplazo de filtros de aceite, aire y combustible",
+      "Control y ajuste de fluidos y niveles generales",
+      "Limpieza, lubricación y tensado de cadena",
+      "Chequeo general de seguridad y tornillería",
+    ],
+  },
+  {
+    id: "servicio-frenos",
+    titulo: "Frenos y Transmisión",
+    subtitulo: "Rendimiento y seguridad en cada viaje",
+    icono: "disc",
+    poster:
+      "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/service-fz.jpeg",
+    video: "/videos/transmision-frenos.mp4",
+    mediaClass: "opacity-90",
+    items: [
+      "Reemplazo de pastillas y discos de freno",
+      "Purgado y cambio de líquido de frenos",
+      "Kit de transmisión (cadena, corona y piñón)",
+      "Revisión de embrague, cables y comandos",
+      "Control de suspensión, barrales y rodamientos",
+    ],
+  },
+  {
+    id: "servicio-motor",
+    titulo: "Inyección y Motor",
+    subtitulo: "Potencia, afinación y precisión mecánica",
+    icono: "engine",
+    poster:
+      "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/123_C.webp",
+    video: "/videos/motor-performance.mp4",
+    mediaClass: "opacity-90",
+    items: [
+      "Limpieza de cuerpos de mariposa e inyectores",
+      "Regulación de válvulas y distribución",
+      "Carburación, sincronización y puesta a punto",
+      "Armado y reparación integral de motor",
+      "Ajuste exclusivo con torquímetros calibrados",
+    ],
+  },
+  {
+    id: "servicio-scanner",
+    titulo: "Scanner JDiag M400 Pro",
+    subtitulo: "Diagnóstico computarizado multimarca",
+    icono: "scanner",
+    poster:
+      "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/mantenimiento-de-motos-speedy-2.jpg",
+    video: "/videos/mecanica-hero.mp4",
+    mediaClass: "opacity-95 brightness-125 contrast-110",
+    items: [
+      "Escaneo de motor, inyección electrónica y ABS",
+      "Lectura de datos en tiempo real y prueba de actuadores",
+      "Borrado de fallas, reset de ECU y luz de service",
+      "Test profesional de batería, arranque y sistema de carga",
+      "Diagnóstico completo previo a compra o viaje",
+    ],
+  },
+  {
+    id: "servicio-escapes",
+    titulo: "Escapes y Performance",
+    subtitulo: "Instalación de Full System y accesorios",
+    icono: "exhaust",
+    poster:
+      "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp",
+    video: "/videos/service-preventivo.mp4",
+    mediaClass: "opacity-90",
+    items: [
+      "Instalación de escapes Full System y Slip-On",
+      "Colocación y ajuste de dB killer y abrazaderas",
+      "Filtros de aire de alto flujo y bujías iridium",
+      "Instalación de sliders, defensas y accesorios",
+      "Control de puesta a punto posterior al montaje",
+    ],
+  },
+  {
+    id: "servicio-estetica",
+    titulo: "Chapa, Pintura y Estética",
+    subtitulo: "Terminación de taller para tu moto",
+    icono: "paint",
+    // Tip: cuando subas a R2 una foto de la Benelli TNT 300 pintada, reemplazá este poster
+    poster:
+      "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/service-fz.jpeg",
+    video: "/videos/transmision-frenos.mp4",
+    mediaClass: "opacity-90",
+    items: [
+      "Reparación y pintura de tanques, cachas y plásticos",
+      "Arreglo estético de caídas, rayones y golpes",
+      "Pintura integral, parcial y personalización",
+      "Pulido, abrillantado y protección de pintura",
+      "Respaldo directo de cabina y colorimetría Taller Cantón",
+    ],
+  },
+];
+
+// 5. NUESTRO TRABAJO: Links limpios a tus Reels reales de @motoboxcanton
+const trabajos = [
+  {
+    servicio: "Aprilia RS 457 — Full System",
+    descripcion: "Instalación de escape completo y sonido sin dB killer",
+    src: "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp",
+    alt: "Instalación de escape Full System en Aprilia RS 457 en Moto Box Hurlingham",
+    reelUrl: "https://www.instagram.com/reel/Df-7vjatlpm/",
+    badge: "Ver Reel ↗",
+  },
+  {
+    servicio: "Benelli TNT 300 — Pintura",
+    descripcion: "Trabajo de chapa y pintura en el taller",
+    // Tip: cuando tengas la foto de la Benelli en R2, pegala acá
+    src: "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/service-fz.jpeg",
+    alt: "Benelli TNT 300 tras pasar por chapa y pintura en Moto Box Taller Cantón",
+    reelUrl: "https://www.instagram.com/reel/DgKTxWRTifi/",
+    badge: "Ver Reel ↗",
+  },
+  {
+    servicio: "Aprilia RS 457 — En el Taller",
+    descripcion: "Detalle del trabajo y terminación en Moto Box",
+    src: "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/123_C.webp",
+    alt: "Aprilia RS 457 en Moto Box by Taller Cantón Hurlingham",
+    reelUrl: "https://www.instagram.com/reel/Df8ivwitAjB/",
+    badge: "Ver Reel ↗",
+  },
+  {
+    servicio: "Más trabajos en @motoboxcanton",
+    descripcion: "Services, scanner JDiag M400 Pro y entregas semanales",
+    src: "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/mantenimiento-de-motos-speedy-2.jpg",
+    alt: "Todos los Reels de mecánica de motos de Moto Box en Instagram",
+    reelUrl: redes.instagramReels,
+    badge: "Todos los Reels ↗",
+  },
+];
+
+// 6. MARCAS CUBIERTAS CON JDIAG M400 PRO (SEO por búsqueda de marca)
+const marcas = [
+  "Honda",
+  "Yamaha",
+  "Suzuki",
+  "Kawasaki",
+  "Bajaj",
+  "Benelli",
+  "Aprilia",
+  "KTM",
+  "BMW",
+  "Ducati",
+  "Triumph",
+  "Harley-Davidson",
+  "Royal Enfield",
+  "CFMoto",
+  "Voge",
+  "Kymco",
+  "SYM",
+  "Vespa / Piaggio",
+  "Hero",
+  "TVS",
+];
+
+// 7. DATOS ESTRUCTURADOS JSON-LD COMPLETOS PARA SEO LOCAL EN GOOGLE
+const seoSchema = {
+  "@context": "https://schema.org",
+  "@type": "MotorcycleRepair",
+  name: "Moto Box — Taller Cantón",
+  alternateName: "Moto Box by Taller Cantón",
+  url: `${SITE_URL}/mecanica-de-motos/`,
+  description:
+    "Taller mecánico de motos multimarca en Hurlingham, Zona Oeste. Service preventivo, mecánica integral, frenos, transmisión, instalación de escapes Full System, chapa y pintura de motos y diagnóstico computarizado con scanner JDiag M400 Pro.",
+  telephone: "+54-11-3341-9375",
+  priceRange: "$$",
+  hasMap: redes.maps,
+  image:
+    "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Centenera 908",
+    addressLocality: "Hurlingham",
+    addressRegion: "Buenos Aires",
+    addressCountry: "AR",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday"],
+      opens: "09:00",
+      closes: "13:00",
+    },
+  ],
+  areaServed: [
+    "Hurlingham",
+    "Villa Tesei",
+    "William Morris",
+    "El Palomar",
+    "Morón",
+    "Castelar",
+    "Ituzaingó",
+    "Zona Oeste",
+  ],
+  parentOrganization: {
+    "@type": "AutoRepair",
+    name: "Taller Cantón — Chapa y Pintura",
+    url: SITE_URL,
+  },
+  sameAs: [redes.instagram, redes.tiktok],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios de Mecánica, Diagnóstico y Pintura de Motos",
+    itemListElement: servicios.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: `${s.titulo} para motos en Hurlingham`,
+        description: s.items.join(". "),
+      },
+    })),
+  },
+};
 ---
 
 <BaseLayout
-  title="Mecánica de Motos y Service Preventivo | Taller Cantón"
-  description="Especialistas en mecánica integral, service preventivo, afinación y alta performance para motos en Hurlingham."
+  title="Moto Box by Taller Cantón | Mecánica de Motos, Scanner JDiag y Pintura en Hurlingham"
+  description="Moto Box en Hurlingham, Zona Oeste. Service preventivo, mecánica integral multimarca, diagnóstico con scanner JDiag M400 Pro, instalación de escapes Full System y chapa y pintura para motos."
+  hideHeader={true}
 >
-  <!-- Carga del CDN de tsparticles para las partículas animadas -->
+  <!-- Schema JSON-LD inyectado directamente en el <head> -->
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(seoSchema)}
+  />
+  <!-- CDN de tsParticles -->
   <script
     src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3.3.0/tsparticles.slim.bundle.min.js"
-    defer></script>
+    defer
+  ></script>
 
-  <!-- HERO SECTION CON FONDO DE PARTÍCULAS ANIMADAS -->
-  <section
-    class="relative pt-44 pb-28 bg-[#0a0a0a] overflow-hidden border-b border-[#262626]"
+  <!-- NAVEGACIÓN INTERNA PROPIA DE MOTO BOX (STICKY + SCROLL ANIMADO) -->
+  <nav
+    id="motobox-nav"
+    aria-label="Navegación interna de Moto Box"
+    class="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-red-600/30 shadow-lg"
   >
-    <!-- Contenedor de partículas animadas de fondo -->
-    <div id="tsparticles" class="absolute inset-0 pointer-events-auto z-0">
-    </div>
-
-    <!-- Luces de ambiente sutiles -->
-    <div
-      class="absolute top-1/4 -left-20 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none"
-    >
-    </div>
-
-    <div
-      class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-    >
-      <div class="space-y-6">
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1 bg-red-600/10 border border-red-600/30 rounded-full"
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <!-- Identidad Submarca + Enlace a Marca Padre -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href="#inicio"
+          data-scroll-link
+          class="flex items-center gap-2.5 group"
         >
+          <span class="w-2.5 h-6 bg-red-600 -skew-x-12 inline-block group-hover:scale-y-110 transition-transform"></span>
+          <div class="leading-none">
+            <span class="font-headline italic font-black text-base sm:text-lg text-white tracking-tight block">
+              MOTO <span class="text-red-600">BOX</span>
+            </span>
+            <span class="font-emblem text-[9px] text-neutral-400 uppercase tracking-widest block">
+              by Taller Cantón
+            </span>
+          </div>
+        </a>
+
+        <span class="hidden md:inline-block h-6 w-px bg-neutral-800"></span>
+
+        <a
+          href={redes.webPadre}
+          class="hidden md:inline-flex items-center gap-1 text-[11px] text-neutral-400 hover:text-white transition-colors"
+          title="Volver a Taller Cantón Chapa y Pintura"
+        >
+          <span>←</span> Taller Cantón
+        </a>
+      </div>
+
+      <!-- Links internos con estado activo automático -->
+      <ul class="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar py-1">
+        {navInterna.map((item, idx) => (
+          <li class="shrink-0">
+            <a
+              href={`#${item.id}`}
+              data-scroll-link
+              data-section-target={item.id}
+              class={`nav-pill px-3 py-1.5 rounded-lg text-xs font-headline uppercase tracking-wider transition-all duration-300 ${
+                idx === 0
+                  ? "bg-red-600/20 text-white border border-red-600/60"
+                  : "text-neutral-300 hover:text-white hover:bg-white/5 border border-transparent"
+              }`}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Botón rápido a Turnos -->
+      <a
+        href="#turno"
+        data-scroll-link
+        class="hidden sm:inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-headline text-[11px] uppercase tracking-wider px-4 py-2 rounded-lg shadow-md shadow-red-600/30 transition-all shrink-0"
+      >
+        Pedir Turno →
+      </a>
+    </div>
+  </nav>
+
+  <!-- 1. HERO FULL-WIDTH CON GRID INTERACTIVO 2x2 -->
+  <section
+    id="inicio"
+    class="scroll-mt-20 relative min-h-[600px] flex items-center pt-16 pb-20 bg-[#080808] overflow-hidden border-b border-red-600/35"
+  >
+    <div class="absolute inset-0 z-0">
+      <video
+        class="w-full h-full object-cover object-right opacity-80 brightness-110"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/mantenimiento-de-motos-speedy-2.jpg"
+      >
+        <source src="/videos/mecanica-hero.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#080808]/75 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/45"></div>
+    </div>
+
+    <!-- Franjas diagonales estilo racing -->
+    <div class="hidden lg:block absolute -left-24 top-0 h-full w-32 bg-red-600/20 -skew-x-12 border-r-2 border-red-600/50 pointer-events-none z-10"></div>
+    <div class="hidden lg:block absolute -right-16 bottom-0 h-56 w-20 bg-red-600/80 -skew-x-12 pointer-events-none z-10"></div>
+
+    <!-- Partículas interactivas (solo desktop para cuidar velocidad móvil) -->
+    <div
+      id="tsparticles"
+      class="absolute inset-0 z-10 pointer-events-auto"
+    ></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-20 w-full">
+      <div class="max-w-2xl space-y-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-red-600/15 border border-red-600/40 rounded-full">
           <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
-          <span
-            class="font-emblem text-red-500 text-[10px] tracking-widest uppercase"
-            >Diagnóstico y Performance</span
-          >
+          <span class="font-emblem text-red-400 text-[10px] tracking-widest uppercase">
+            Taller de Motos en Hurlingham
+          </span>
         </div>
-        <h1
-          class="font-headline text-4xl sm:text-5xl text-white tracking-tight leading-none"
-        >
-          MECÁNICA INTEGRAL <br /><span
-            class="text-red-600 drop-shadow-[0_0_25px_rgba(220,38,38,0.4)]"
-            >Y SERVICIO PREVENTIVO</span
-          >
+
+        <h1 class="font-headline italic font-black uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.94] text-white">
+          MOTO BOX <br />
+          <span class="text-red-600 drop-shadow-[0_0_28px_rgba(220,38,38,0.55)]">
+            MECÁNICA DE MOTOS
+          </span>
         </h1>
-        <p
-          class="font-tech text-neutral-300 text-sm sm:text-base leading-relaxed"
+
+        <!-- Grid 2x2 interactivo con hover racing y scroll directo a cada tarjeta -->
+        <ul
+          aria-label="Especialidades de Moto Box"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl pt-1"
         >
-          Mantenimiento preventivo, service y mecánica general para tu moto.
-          Diagnóstico computarizado y atención especializada en Zona Oeste
+          {accesosHero.map((acceso) => (
+            <li>
+              <a
+                href={acceso.href}
+                data-scroll-link
+                class="group relative overflow-hidden flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-black/55 backdrop-blur-sm border border-white/10 hover:border-red-600/80 hover:bg-red-600/15 hover:-translate-y-0.5 hover:shadow-[0_0_22px_rgba(220,38,38,0.28)] transition-all duration-300"
+              >
+                <span class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12" />
+                <span class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-4 bg-red-600 -skew-x-12 shrink-0 group-hover:h-5 group-hover:bg-red-500 transition-all" />
+                  <span class="font-headline italic text-xs sm:text-sm text-white tracking-wide whitespace-nowrap">
+                    {acceso.label}
+                  </span>
+                </span>
+                <span class="text-red-500 text-xs opacity-50 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                  →
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p class="font-tech text-neutral-200 text-sm sm:text-base leading-relaxed max-w-xl pt-1">
+          Mantenimiento preventivo, diagnóstico computarizado{" "}
+          <strong class="text-white">JDiag M400 Pro</strong>, instalación de
+          escapes y pintura para tu moto en Zona Oeste, con herramientas
+          calibradas y presupuestos claros.
         </p>
-        <div class="flex flex-wrap gap-4 pt-4">
+
+        <div class="flex flex-wrap items-center gap-4 pt-3">
           <a
-            href={whatsappMecanica}
+            href={redes.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-red-600 hover:bg-red-700 text-white font-headline text-xs px-8 py-4 transition-smooth shadow-lg shadow-red-600/30 hover:scale-105"
+            class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-headline text-xs sm:text-sm uppercase tracking-wider px-7 py-4 rounded-xl shadow-[0_0_25px_rgba(220,38,38,0.45)] hover:scale-[1.03] transition-all"
           >
-            Reservar Turno de Service
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+              <path d="M16 2v4M8 2v4M3 10h18"></path>
+            </svg>
+            Solicitá tu turno
+            <span>→</span>
           </a>
+
           <a
             href="#servicios"
-            class="border border-[#333] hover:border-red-600/50 text-neutral-300 font-headline text-xs px-8 py-4 transition-smooth flex items-center gap-2 group"
+            data-scroll-link
+            class="inline-flex items-center gap-2 bg-black/55 backdrop-blur-sm border border-neutral-600 hover:border-red-600 text-neutral-200 hover:text-white font-headline text-xs sm:text-sm uppercase tracking-wider px-7 py-4 rounded-xl transition-all"
           >
-            Ver servicios <span
-              class="group-hover:translate-y-1 transition-transform">↓</span
-            >
+            Ver servicios
           </a>
         </div>
       </div>
-
-      <!-- Video Principal Hero con Hover Play -->
-      <div
-        class="card-industrial p-3 relative aspect-video rounded-xl overflow-hidden group border border-neutral-800 hover:border-red-600/40 transition-all shadow-2xl z-10"
-      >
-        <video
-          class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-700"
-          autoplay
-          muted
-          loop
-          playsinline
-          poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/mantenimiento-de-motos-speedy-2.jpg"
-        >
-          <source src="/videos/mecanica-hero.mp4" type="video/mp4" />
-          Tu navegador no soporta videos HTML5.
-        </video>
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"
-        >
-        </div>
-        <div
-          class="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-end"
-        >
-          <div>
-            <span
-              class="font-emblem text-red-500 text-[10px] uppercase tracking-widest bg-black/60 px-2 py-1 border border-red-600/30"
-              >Mantenimiento preventivo</span
-            >
-            <h3 class="font-headline text-lg text-white mt-1">
-              Diagnóstico y Performance
-            </h3>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- SECCIÓN DE SERVICIOS / VIDEOS INTERACTIVOS (HOVER TO PLAY) -->
-  <section id="servicios" class="py-24 bg-[#0d0d0d] relative">
-    <div class="max-w-7xl mx-auto px-6 space-y-16">
-      <div class="text-center max-w-2xl mx-auto space-y-4">
-        <span class="font-emblem text-red-500 text-xs tracking-widest uppercase"
-          >Especialidades del Taller</span
-        >
-        <h2 class="font-headline text-3xl text-white">Service y Mecánica</h2>
-        <p class="text-xs text-neutral-400"></p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Video Card 1 -->
-        <div
-          class="card-industrial p-4 space-y-4 relative overflow-hidden group border border-neutral-800 hover:border-red-600/60 transition-all"
-        >
-          <div
-            class="relative aspect-video rounded-lg overflow-hidden bg-neutral-900"
-          >
-            <video
-              class="video-hover w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              muted
-              loop
-              playsinline
-              preload="none"
-              poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp"
-            >
-              <source src="/videos/service-preventivo.mp4" type="video/mp4" />
-            </video>
-            <div
-              class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors pointer-events-none flex items-center justify-center"
-            >
-              <span
-                class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
-              >
-                ▶
-              </span>
-            </div>
-          </div>
-          <div class="space-y-1">
-            <span class="font-emblem text-red-500 text-[10px]"
-              >01 / RUTINARIO</span
-            >
-            <h3 class="font-headline text-sm text-white">Service Preventivo</h3>
-            <p class="text-[11px] text-neutral-400">
-              Cambio de aceites , filtros, revisión de transmisión y niveles
-              generales.
-            </p>
-          </div>
-        </div>
-
-        <!-- Video Card 2 -->
-        <div
-          class="card-industrial p-4 space-y-4 relative overflow-hidden group border border-neutral-800 hover:border-red-600/60 transition-all"
-        >
-          <div
-            class="relative aspect-video rounded-lg overflow-hidden bg-neutral-900"
-          >
-            <video
-              class="video-hover w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              muted
-              loop
-              playsinline
-              preload="none"
-              poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/service-fz.jpeg"
-            >
-              <source src="/videos/transmision-frenos.mp4" type="video/mp4" />
-            </video>
-            <div
-              class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors pointer-events-none flex items-center justify-center"
-            >
-              <span
-                class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
-              >
-                ▶
-              </span>
-            </div>
-          </div>
-          <div class="space-y-1">
-            <span class="font-emblem text-red-500 text-[10px]"
-              >02 / SEGURIDAD</span
-            >
-            <h3 class="font-headline text-sm text-white">
-              Frenos y Transmisión
-            </h3>
-            <p class="text-[11px] text-neutral-400">
-              Mantenimiento preventivo de frenos y transmisión, Remplazo de
-              pastillas, discos y líquido de frenos.
-            </p>
-          </div>
-        </div>
-
-        <!-- Video Card 3 -->
-        <div
-          class="card-industrial p-4 space-y-4 relative overflow-hidden group border border-neutral-800 hover:border-red-600/60 transition-all"
-        >
-          <div
-            class="relative aspect-video rounded-lg overflow-hidden bg-neutral-900"
-          >
-            <video
-              class="video-hover w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              muted
-              loop
-              playsinline
-              preload="none"
-              poster="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/123_C.webp"
-            >
-              <source src="/videos/motor-performance.mp4" type="video/mp4" />
-            </video>
-            <div
-              class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors pointer-events-none flex items-center justify-center"
-            >
-              <span
-                class="play-badge bg-black/60 backdrop-blur-sm text-white text-[10px] font-emblem px-3 py-1 border border-white/10 group-hover:opacity-0 transition-opacity"
-              >
-                ▶
-              </span>
-            </div>
-          </div>
-          <div class="space-y-1">
-            <span class="font-emblem text-red-500 text-[10px]"
-              >03 / AVANZADO</span
-            >
-            <h3 class="font-headline text-sm text-white">Inyección y Motor</h3>
-            <p class="text-[11px] text-neutral-400">
-              Limpieza de cuerpos de mariposa, sincronización, escáner y
-              reparación.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN DE BENEFICIOS Y LLAMADO A LA ACCIÓN -->
-  <section
-    class="py-24 bg-[#0a0a0a] border-t border-[#262626] relative overflow-hidden"
-  >
-    <div
-      class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10"
-    >
-      <div class="space-y-6">
-        <span class="font-emblem text-red-500 text-xs tracking-widest uppercase"
-          >Calidad y Transparencia</span
-        >
-        <h2 class="font-headline text-2xl md:text-3xl text-white">
-          ¿Por qué confiar la mecánica de tu moto en Taller Cantón?
+  <!-- 2. GRILLA DE SERVICIOS (6 TARJETAS: 3 FILAS x 2 COLUMNAS) -->
+  <section id="servicios" class="scroll-mt-20 py-16 bg-[#0b0b0b] relative">
+    <div class="max-w-7xl mx-auto px-6 space-y-8">
+      <div class="flex items-center gap-4">
+        <h2 class="font-headline italic font-black uppercase text-2xl sm:text-3xl text-white shrink-0">
+          Servicios de <span class="text-red-600">Mecánica y Estética</span>
         </h2>
-        <p class="text-xs text-neutral-300 leading-relaxed">
-          Sabemos lo que significa tu moto para vos. Por eso trabajamos con
-          orden, herramientas profesionales y te avisamos cada detalle antes de
-          avanzar con cualquier reparación.
-        </p>
-        <ul class="space-y-3 text-xs text-neutral-300">
-          <li class="flex items-center gap-2">
-            ✓ Uso exclusivo de torquímetros y herramientas calibradas
-          </li>
-          <li class="flex items-center gap-2">
-            ✓ Insumos de primera línea (lubricantes sintéticos certificados)
-          </li>
-          <li class="flex items-center gap-2">
-            ✓ Presupuestos claros y sin sorpresas
-          </li>
-        </ul>
+        <div class="h-[2px] flex-1 bg-gradient-to-r from-red-600 to-transparent"></div>
       </div>
 
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {servicios.map((servicio) => (
+          <article
+            id={servicio.id}
+            class="video-card scroll-mt-24 group relative rounded-2xl overflow-hidden border border-neutral-800 hover:border-red-600/80 bg-[#111111] shadow-2xl transition-all duration-300 min-h-[340px] flex flex-col justify-between"
+          >
+            <div class="absolute inset-0 z-0 overflow-hidden">
+              <video
+                class={`video-hover w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ${servicio.mediaClass}`}
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster={servicio.poster}
+              >
+                <source src={servicio.video} type="video/mp4" />
+              </video>
+              <div class="absolute inset-0 bg-gradient-to-r from-[#0d0d0d] via-[#0d0d0d]/85 to-[#0d0d0d]/15" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/85 via-transparent to-[#0d0d0d]/40" />
+            </div>
+
+            <div class="relative z-10 flex items-center justify-between gap-4 border-b border-white/10 bg-black/45 backdrop-blur-[2px] pr-4">
+              <div class="flex items-center gap-4">
+                <div class="relative bg-gradient-to-br from-red-600 to-red-800 px-5 py-4 flex items-center justify-center shrink-0 clip-diagonal">
+                  {servicio.icono === "wrench" && (
+                    <svg
+                      class="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                      />
+                    </svg>
+                  )}
+                  {servicio.icono === "disc" && (
+                    <svg
+                      class="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle cx="12" cy="12" r="9" />
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+                    </svg>
+                  )}
+                  {servicio.icono === "engine" && (
+                    <svg
+                      class="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4 10h2l2-2h6l2 2h3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-3l-2 2H8l-2-2H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1zM9 5h6M12 5v3"
+                      />
+                    </svg>
+                  )}
+                  {servicio.icono === "scanner" && (
+                    <svg
+                      class="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      viewBox="0 0 24 24"
+                    >
+                      <rect x="5" y="2" width="14" height="20" rx="2" />
+                      <path d="M9 7h6M9 11h6M9 15h3" />
+                    </svg>
+                  )}
+                  {servicio.icono === "exhaust" && (
+                    <svg
+                      class="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
+                      />
+                    </svg>
+                  )}
+                  {servicio.icono === "paint" && (
+                    <svg
+                      class="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3zM5 17l1 2.2L8.2 20 6 21l-1 2.2L4 21l-2.2-1L4 19.2 5 17z"
+                      />
+                    </svg>
+                  )}
+                </div>
+
+                <div class="py-3">
+                  <h3 class="font-headline italic font-black uppercase text-lg sm:text-xl text-white leading-tight">
+                    {servicio.titulo}
+                  </h3>
+                  <p class="text-xs sm:text-sm italic text-neutral-300">
+                    {servicio.subtitulo}
+                  </p>
+                </div>
+              </div>
+
+              <span
+                aria-hidden="true"
+                class="hidden sm:flex w-8 h-8 rounded-full bg-black/60 border border-white/15 items-center justify-center text-white/80 text-[10px] shrink-0 group-hover:opacity-0 transition-opacity"
+              >
+                ▶
+              </span>
+            </div>
+
+            <div class="relative z-10 p-6 flex-1 flex flex-col justify-between gap-6">
+              <ul class="space-y-2.5 max-w-md">
+                {servicio.items.map((item) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-100">
+                    <svg
+                      class="w-4 h-4 text-red-600 shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div>
+                <a
+                  href={redes.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-black/80 border border-red-600/80 hover:bg-red-600 text-white text-xs sm:text-sm font-semibold transition-all"
+                >
+                  Consultar {servicio.titulo.split(" ")[0]} <span>→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BARRA DE CONFIANZA -->
+  <section class="py-12 bg-[#080808] border-y border-neutral-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-neutral-800">
+        <div class="flex items-center justify-center gap-4 lg:px-6">
+          <svg
+            class="w-10 h-10 text-red-600 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"
+            ></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12l2 2 4-4"
+            ></path>
+          </svg>
+          <span class="text-sm sm:text-base font-semibold text-white leading-snug">
+            Calidad
+            <br />
+            garantizada
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 lg:px-6">
+          <svg
+            class="w-10 h-10 text-red-600 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6 5.87v-2a4 4 0 0 0-3-3.87M12 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm8 2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+            ></path>
+          </svg>
+          <span class="text-sm sm:text-base font-semibold text-white leading-snug">
+            Atención
+            <br />
+            personalizada
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 lg:px-6">
+          <svg
+            class="w-10 h-10 text-red-600 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 7v5l3 2"
+            ></path>
+          </svg>
+          <span class="text-sm sm:text-base font-semibold text-white leading-snug">
+            Cumplimiento
+            <br />
+            de turnos
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 lg:px-6">
+          <svg
+            class="w-10 h-10 text-red-600 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 10l9-6 9 6v10H3V10z"
+            ></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8 20v-7h8v7M8 15h8"
+            ></path>
+          </svg>
+          <span class="text-sm sm:text-base font-semibold text-white leading-snug">
+            Respaldo
+            <br />
+            Taller Cantón
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TRABAJOS REALES EN REELS + TALLER MULTIMARCA JDIAG M400 PRO -->
+  <section id="trabajos" class="scroll-mt-20 py-16 bg-[#0d0d0d]">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <!-- Galería con enlaces reales a Reels de @motoboxcanton -->
+      <div class="lg:col-span-7 space-y-5">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-4 flex-1">
+            <h2 class="font-headline italic font-black uppercase text-xl sm:text-2xl text-white shrink-0">
+              Trabajos Reales en Reels
+            </h2>
+            <div class="h-[2px] flex-1 bg-gradient-to-r from-red-600 to-transparent"></div>
+          </div>
+          <span class="hidden sm:inline text-xs text-neutral-400">
+            Tocá un trabajo para ver el Reel
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {trabajos.map((item) => (
+            <a
+              href={item.reelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.badge}: ${item.servicio}`}
+              class="relative aspect-[16/10] rounded-xl overflow-hidden border border-neutral-800 hover:border-red-600 group transition-all duration-300 block shadow-lg"
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/15 group-hover:via-black/20 transition-colors" />
+
+              <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/75 backdrop-blur-sm border border-white/15 group-hover:border-red-500 group-hover:bg-red-600 text-white text-[10px] font-emblem uppercase tracking-wider px-2.5 py-1 rounded-full transition-colors">
+                <svg
+                  class="w-3.5 h-3.5 fill-current"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.9 3.9 0 0 1-1.4-.9c-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.3-.1 1.6-.1 4.9-.1zm0 3.6a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z" />
+                </svg>
+                <span>{item.badge}</span>
+              </div>
+
+              <div class="absolute bottom-3 left-3 right-3 space-y-0.5">
+                <h3 class="font-headline italic font-black uppercase text-sm sm:text-base text-white group-hover:text-red-400 transition-colors">
+                  {item.servicio}
+                </h3>
+                <p class="text-[11px] text-neutral-300 line-clamp-1">
+                  {item.descripcion}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Bloque El Taller (SEO local + JDiag M400 Pro + Marcas + Maps + Horarios) -->
       <div
-        class="card-industrial p-8 space-y-6 bg-gradient-to-br from-[#141414] to-[#0a0a0a] border-red-600/45 shadow-[0_0_30px_rgba(220,38,38,0.15)]"
+        id="taller"
+        class="scroll-mt-24 lg:col-span-5 lg:border-l lg:border-neutral-800 lg:pl-8 space-y-5"
       >
         <div class="space-y-2">
-          <span
-            class="font-emblem text-red-500 text-[10px] uppercase tracking-widest"
-            >Coordiná tu Servicio</span
-          >
-          <h3 class="font-headline text-xl text-white">
-            ¿Le toca el service o querés revisar una falla?
-          </h3>
-          <p class="text-xs text-neutral-400 leading-relaxed">
-            Escribinos contándonos marca, modelo y kilometraje de tu moto para
-            agilizar el presupuesto y el turno.
+          <span class="font-emblem text-red-500 text-[10px] tracking-widest uppercase">
+            Moto Box • Hurlingham, Zona Oeste
+          </span>
+          <h2 class="font-headline italic font-black uppercase text-2xl text-white leading-tight">
+            Taller de motos multimarca en Hurlingham
+          </h2>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            Con el respaldo de <strong class="text-white">Taller Cantón</strong>
+            y equipamiento <strong class="text-white">JDiag M400 Pro</strong>,
+            atendemos motos de baja, media y alta cilindrada —a inyección y
+            carburadas— con presupuesto claro antes de desarmar.
           </p>
         </div>
+
+        <ul class="space-y-2.5 text-sm text-neutral-200">
+          <li class="flex items-start gap-2.5">
+            <svg
+              class="w-4 h-4 text-red-600 shrink-0 mt-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <span>
+              Service según manual con torquímetro y lubricantes sintéticos
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg
+              class="w-4 h-4 text-red-600 shrink-0 mt-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <span>
+              Escaneo electrónico JDiag M400 Pro: motor, ABS, ECU y batería
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg
+              class="w-4 h-4 text-red-600 shrink-0 mt-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <span>
+              Seguimiento real por foto y video durante todo el trabajo
+            </span>
+          </li>
+        </ul>
+
+        <!-- Cobertura completa de marcas del JDiag M400 Pro + Ubicación y Horarios -->
+        <div class="p-4 rounded-xl bg-[#131313] border border-neutral-800 space-y-3">
+          <p class="text-[11px] font-emblem uppercase tracking-wider text-red-500">
+            Cobertura multimarca (JDiag M400 Pro)
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {marcas.map((marca) => (
+              <span class="px-2 py-0.5 rounded-md bg-black/60 border border-neutral-800 text-[11px] font-medium text-neutral-200">
+                {marca}
+              </span>
+            ))}
+          </div>
+
+          <div class="pt-2.5 border-t border-neutral-800/80 space-y-1.5 text-xs">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-neutral-300 flex items-center gap-1.5">
+                <svg
+                  class="w-3.5 h-3.5 text-red-600 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"></path>
+                </svg>
+                Centenera 908, Hurlingham
+              </span>
+              <a
+                href={redes.maps}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-red-500 hover:text-white font-semibold transition-colors shrink-0"
+              >
+                Cómo llegar ↗
+              </a>
+            </div>
+            <p class="text-[11px] text-neutral-400 pl-5">
+              {redes.horariosCortos}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SECCIÓN SEGUINOS EN REDES (INSTAGRAM, TIKTOK, WEB, WHATSAPP) -->
+  <section
+    id="redes"
+    class="scroll-mt-20 py-16 bg-[#0a0a0a] border-t border-neutral-800"
+  >
+    <div class="max-w-7xl mx-auto px-6 space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div class="space-y-1">
+          <span class="font-emblem text-red-500 text-[10px] tracking-widest uppercase">
+            Comunidad y Canales Oficiales
+          </span>
+          <h2 class="font-headline italic font-black uppercase text-2xl sm:text-3xl text-white">
+            Seguinos en <span class="text-red-600">Redes</span>
+          </h2>
+        </div>
+        <p class="text-xs sm:text-sm text-neutral-400 max-w-md">
+          Mirá el día a día del taller, trabajos reales en video o visitá la web
+          principal de Taller Cantón.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Instagram -->
         <a
-          href={whatsappMecanica}
+          href={redes.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-headline text-xs py-4 transition-smooth shadow-lg shadow-red-600/30 hover:scale-[1.02]"
+          class="group rounded-2xl p-6 bg-[#121212] border border-neutral-800 hover:border-red-600/80 hover:-translate-y-1 transition-all flex flex-col justify-between gap-5"
         >
-          Consultar por WhatsApp
+          <div class="flex items-center justify-between">
+            <span class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-600/35 text-red-500 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.9 3.9 0 0 1-1.4-.9c-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.3-.1 1.6-.1 4.9-.1zm0 3.6a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"></path>
+              </svg>
+            </span>
+            <span class="text-neutral-500 group-hover:text-red-500 transition-colors">
+              ↗
+            </span>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-headline italic font-black uppercase text-lg text-white">
+              Instagram
+            </h3>
+            <p class="text-xs text-neutral-400">
+              Reels de escapes Full System, services, pintura y entregas en
+              <strong class="text-neutral-200">@motoboxcanton</strong>.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-red-500 group-hover:text-white transition-colors">
+            Seguir a @motoboxcanton →
+          </span>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          href={redes.tiktok}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-2xl p-6 bg-[#121212] border border-neutral-800 hover:border-red-600/80 hover:-translate-y-1 transition-all flex flex-col justify-between gap-5"
+        >
+          <div class="flex items-center justify-between">
+            <span class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-600/35 text-red-500 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path>
+              </svg>
+            </span>
+            <span class="text-neutral-500 group-hover:text-red-500 transition-colors">
+              ↗
+            </span>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-headline italic font-black uppercase text-lg text-white">
+              TikTok
+            </h3>
+            <p class="text-xs text-neutral-400">
+              Sonidos de escape, pruebas con scanner JDiag M400 Pro y tips de
+              taller.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-red-500 group-hover:text-white transition-colors">
+            Ver @motoboxcanton →
+          </span>
+        </a>
+
+        <!-- Web Oficial Taller Cantón -->
+        <a
+          href={redes.webPadre}
+          class="group rounded-2xl p-6 bg-[#121212] border border-neutral-800 hover:border-red-600/80 hover:-translate-y-1 transition-all flex flex-col justify-between gap-5"
+        >
+          <div class="flex items-center justify-between">
+            <span class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-600/35 text-red-500 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </span>
+            <span class="text-neutral-500 group-hover:text-red-500 transition-colors">
+              →
+            </span>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-headline italic font-black uppercase text-lg text-white">
+              Web Taller Cantón
+            </h3>
+            <p class="text-xs text-neutral-400">
+              Conocé también nuestra casa matriz de Chapa, Pintura y Detailing
+              automotriz.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-red-500 group-hover:text-white transition-colors">
+            Ir a Taller Cantón →
+          </span>
+        </a>
+
+        <!-- WhatsApp Directo -->
+        <a
+          href={redes.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-2xl p-6 bg-gradient-to-br from-red-950/40 to-[#121212] border border-red-600/50 hover:border-red-500 hover:-translate-y-1 transition-all flex flex-col justify-between gap-5"
+        >
+          <div class="flex items-center justify-between">
+            <span class="w-12 h-12 rounded-xl bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/30">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12.03 2a10 10 0 0 0-8.66 15l-1.3 4.74 4.86-1.27A10 10 0 1 0 12.03 2zm5.82 14.1c-.25.7-1.44 1.34-2 1.42-.52.08-1.18.11-1.9-.12-.44-.14-1-.33-1.72-.64-3.02-1.3-5-4.36-5.15-4.56-.15-.2-1.23-1.64-1.23-3.13 0-1.49.78-2.22 1.06-2.52.28-.3.6-.38.8-.38h.58c.19 0 .44-.07.69.52.25.6.85 2.08.93 2.23.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.32.4-.45.53-.15.15-.3.32-.13.62.17.3.78 1.28 1.67 2.08 1.15 1.02 2.11 1.34 2.41 1.49.3.15.48.13.65-.08.18-.2.75-.88.95-1.18.2-.3.4-.25.68-.15.28.1 1.76.83 2.06.98.3.15.5.23.58.35.07.13.07.73-.18 1.43z"></path>
+              </svg>
+            </span>
+            <span class="text-red-400">↗</span>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-headline italic font-black uppercase text-lg text-white">
+              WhatsApp
+            </h3>
+            <p class="text-xs text-neutral-300">
+              Mandanos marca, modelo y km de tu moto para cotizar y coordinar
+              turno.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-white">
+            Escribir al {redes.telefonoVisible} →
+          </span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Script combinado: Partículas animadas + Videos Hover -->
+  <!-- 6. BANNER CTA FINAL: SOLICITÁ TU TURNO -->
+  <section
+    id="turno"
+    class="scroll-mt-20 relative overflow-hidden bg-[#080808] border-y border-red-600/40"
+  >
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp"
+        alt="Taller mecánico de motos Moto Box en Hurlingham"
+        loading="lazy"
+        class="w-full lg:w-[45%] h-full object-cover object-center opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-red-950/20 via-[#080808]/80 to-[#080808]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-14 relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-end gap-8 lg:gap-12">
+      <div class="text-center space-y-1.5">
+        <span class="font-emblem text-[10px] uppercase tracking-widest text-red-500 block">
+          Moto Box • Taller Cantón
+        </span>
+        <h2 class="font-headline italic font-black text-3xl sm:text-4xl text-white tracking-tight">
+          Solicitá tu <span class="text-red-600">TURNO</span>
+        </h2>
+        <p class="italic text-sm sm:text-base text-neutral-200 font-medium">
+          Rápido <span class="text-red-600 mx-1.5">•</span> Fácil{" "}
+          <span class="text-red-600 mx-1.5">•</span> Confiable
+        </p>
+      </div>
+
+      <div class="hidden lg:block w-[2px] h-16 bg-red-600 rotate-12"></div>
+
+      <div class="space-y-2 text-center lg:text-left lg:pr-6">
+        <a
+          href={redes.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 text-white hover:text-red-500 transition-colors"
+        >
+          <span class="w-10 h-10 rounded-full border-2 border-red-600 bg-red-600/15 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12.03 2a10 10 0 0 0-8.66 15l-1.3 4.74 4.86-1.27A10 10 0 1 0 12.03 2zm5.82 14.1c-.25.7-1.44 1.34-2 1.42-.52.08-1.18.11-1.9-.12-.44-.14-1-.33-1.72-.64-3.02-1.3-5-4.36-5.15-4.56-.15-.2-1.23-1.64-1.23-3.13 0-1.49.78-2.22 1.06-2.52.28-.3.6-.38.8-.38h.58c.19 0 .44-.07.69.52.25.6.85 2.08.93 2.23.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.32.4-.45.53-.15.15-.3.32-.13.62.17.3.78 1.28 1.67 2.08 1.15 1.02 2.11 1.34 2.41 1.49.3.15.48.13.65-.08.18-.2.75-.88.95-1.18.2-.3.4-.25.68-.15.28.1 1.76.83 2.06.98.3.15.5.23.58.35.07.13.07.73-.18 1.43z"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-2xl sm:text-3xl font-black tracking-wide">
+            {redes.telefonoVisible}
+          </span>
+        </a>
+        <p class="flex items-center justify-center lg:justify-start gap-2 text-sm text-neutral-300">
+          <svg
+            class="w-4 h-4 text-red-600 shrink-0"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"></path>
+          </svg>
+          <a
+            href={redes.maps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transition-colors"
+          >
+            {redes.direccion}
+          </a>
+        </p>
+        <p class="text-xs text-neutral-400">{redes.horariosCortos}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estilos específicos -->
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    .clip-diagonal {
+      clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+
+  <!-- Script combinado: Partículas (solo desktop) + Videos Hover + Scroll suave con destello + Nav activo -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Inicializar tsParticles en el fondo del Hero de forma segura
+      // 1. Inicializar tsParticles solo en desktop/tablet para mejorar Core Web Vitals en celular
       const particlesContainer = (window as any).tsParticles;
-      if (particlesContainer && typeof particlesContainer.load === "function") {
+      if (
+        window.innerWidth >= 768 &&
+        particlesContainer &&
+        typeof particlesContainer.load === "function"
+      ) {
         particlesContainer.load({
           id: "tsparticles",
           options: {
-            background: {
-              color: { value: "transparent" },
-            },
+            background: { color: { value: "transparent" } },
             fpsLimit: 60,
             interactivity: {
-              events: {
-                onHover: {
-                  enable: true,
-                  mode: "repulse", // Las partículas se apartan sutilmente al pasar el mouse
-                },
-              },
-              modes: {
-                repulse: { distance: 80, duration: 0.4 },
-              },
+              events: { onHover: { enable: true, mode: "repulse" } },
+              modes: { repulse: { distance: 80, duration: 0.4 } },
             },
             particles: {
-              color: { value: ["#dc2626", "#ffffff", "#525252"] }, // Tonos rojos, blancos y grises industriales
+              color: { value: ["#dc2626", "#ffffff", "#525252"] },
               links: {
                 color: "#dc2626",
                 distance: 130,
                 enable: true,
-                opacity: 0.15,
+                opacity: 0.12,
                 width: 1,
               },
               move: {
                 enable: true,
-                speed: 1.2,
-                direction: "none",
+                speed: 1,
                 random: true,
-                straight: false,
                 outModes: { default: "out" },
               },
-              number: {
-                density: { enable: true, area: 900 },
-                value: 45, // Cantidad justa para que luzca limpio y elegante
-              },
-              opacity: {
-                value: { min: 0.2, max: 0.7 },
-              },
-              size: {
-                value: { min: 1, max: 3 },
-              },
+              number: { density: { enable: true, area: 950 }, value: 32 },
+              opacity: { value: { min: 0.15, max: 0.6 } },
+              size: { value: { min: 1, max: 2.5 } },
             },
             detectRetina: true,
           },
         });
       }
 
-      // 2. Control de Videos en Hover (Play / Pause) usando casteo seguro para JS nativo
-      const videoCards = document.querySelectorAll(".group");
+      // 2. Videos Hover acotados a .video-card
+      const videoCards = document.querySelectorAll(".video-card");
       videoCards.forEach((card) => {
         const video = card.querySelector(
           ".video-hover",
@@ -379,6 +1224,79 @@ const whatsappMecanica = getWhatsAppUrl("mecanica"); // O usa "turno" según tu 
           });
         }
       });
+
+      // 3. Scroll suave + resaltado temporal si el destino es una tarjeta de servicio
+      const nav = document.getElementById("motobox-nav");
+      const scrollLinks = document.querySelectorAll("[data-scroll-link]");
+
+      scrollLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const href = link.getAttribute("href");
+          if (!href || !href.startsWith("#")) return;
+          const target = document.querySelector<HTMLElement>(href);
+          if (!target) return;
+
+          e.preventDefault();
+          const navHeight = nav ? nav.offsetHeight : 64;
+          const topPosition =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            navHeight -
+            16;
+
+          window.scrollTo({
+            top: topPosition,
+            behavior: "smooth",
+          });
+
+          if (target.classList.contains("video-card")) {
+            target.classList.add(
+              "ring-2",
+              "ring-red-600",
+              "shadow-[0_0_35px_rgba(220,38,38,0.45)]",
+            );
+            setTimeout(() => {
+              target.classList.remove(
+                "ring-2",
+                "ring-red-600",
+                "shadow-[0_0_35px_rgba(220,38,38,0.45)]",
+              );
+            }, 1500);
+          }
+        });
+      });
+
+      // 4. Resaltado automático de la sección activa en el Nav interno
+      const navPills =
+        document.querySelectorAll<HTMLAnchorElement>(".nav-pill");
+      const sectionIds = ["inicio", "servicios", "trabajos", "taller", "redes"];
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((el): el is HTMLElement => el !== null);
+
+      const setActivePill = (activeId: string) => {
+        navPills.forEach((pill) => {
+          const isMatch = pill.dataset.sectionTarget === activeId;
+          pill.classList.toggle("bg-red-600/20", isMatch);
+          pill.classList.toggle("text-white", isMatch);
+          pill.classList.toggle("border-red-600/60", isMatch);
+          pill.classList.toggle("text-neutral-300", !isMatch);
+          pill.classList.toggle("border-transparent", !isMatch);
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActivePill(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "-35% 0px -55% 0px", threshold: 0.05 },
+      );
+
+      sections.forEach((section) => observer.observe(section));
     });
   </script>
 </BaseLayout>

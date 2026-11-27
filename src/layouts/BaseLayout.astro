@@ -2,32 +2,68 @@
 import "../styles/global.css";
 import { getWhatsAppUrl } from "../utils/whatsapp";
 import "tailwindcss";
-import { tsParticles } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
 import GoogleReviews from "../components/GoogleReviews.astro";
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  hideHeader?: boolean;
+  hideReviews?: boolean;
 }
 
 const {
   title,
-  description = "Taller Cantón — Chapa y pintura, mecánica de motos y terminación estética en Hurlingham, Zona Oeste.",
+  description = "Taller Cantón — Chapa y pintura, mecánica de motos (Moto Box) y terminación estética en Hurlingham, Zona Oeste.",
+  image = "https://pub-804fbc180fcb4c0d895ad136b3f91ede.r2.dev/images/motos/aprilia-457-service.webp",
+  hideHeader = false,
+  hideReviews = false,
 } = Astro.props;
+
+// Evita duplicar "| Taller Cantón" si el título de la página ya incluye la marca
+const fullTitle = title.toLowerCase().includes("taller cantón")
+  ? title
+  : `${title} | Taller Cantón`;
+
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.href;
 
 const whatsappGeneralUrl = getWhatsAppUrl("general");
 const whatsappTurnoUrl = getWhatsAppUrl("turno");
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-AR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | Taller Cantón</title>
+
+    <!-- SEO Primario -->
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- SEO Local (Hurlingham, Buenos Aires) -->
+    <meta name="geo.region" content="AR-B" />
+    <meta name="geo.placename" content="Hurlingham, Buenos Aires" />
+
+    <!-- Open Graph (Previsualización en WhatsApp, Instagram y Facebook) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Taller Cantón" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,207 +72,218 @@ const whatsappTurnoUrl = getWhatsAppUrl("turno");
       href="https://fonts.googleapis.com/css2?family=Krona+One&family=Space+Grotesk:wght@400;500;700&family=Syncopate:wght@700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Slot opcional para inyectar Schema JSON-LD o scripts específicos por página -->
+    <slot name="head" />
   </head>
-  <body
-    class="bg-[#0a0a0a] text-[#f5f5f5] min-h-screen flex flex-col selection:bg-red-600 selection:text-white overflow-x-hidden"
-  >
-    <!-- TOP BAR DE UTILIDAD -->
-    <div
-      class="bg-[#121212] border-b border-neutral-900 text-xs text-neutral-400 py-2 hidden md:block"
-    >
-      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div class="flex items-center gap-6">
-          <span class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-            ></span>
-            Turnos y Presupuestos Abiertos
-          </span>
-          <span class="text-neutral-600">|</span>
-          <span>Hurlingham, Zona Oeste, Bs. As.</span>
+
+  <body class="bg-[#0a0a0a] text-[#f5f5f5] min-h-screen flex flex-col selection:bg-red-600 selection:text-white overflow-x-clip">
+    {!hideHeader && (
+      <>
+        <!-- TOP BAR DE UTILIDAD -->
+        <div class="bg-[#121212] border-b border-neutral-900 text-xs text-neutral-400 py-2 hidden md:block">
+          <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+              <span class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Turnos y Presupuestos Abiertos
+              </span>
+              <span class="text-neutral-600">|</span>
+              <span>Hurlingham, Zona Oeste, Bs. As.</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <a
+                href={whatsappGeneralUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-red-500 transition-colors"
+              >
+                WhatsApp General
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="flex items-center gap-4">
-          <a
-            href={whatsappGeneralUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-red-500 transition-colors"
-          >
-            WhatsApp General
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- HEADER PRINCIPAL -->
-    <header
-      id="site-header"
-      class="fixed top-0 md:top-[33px] left-0 w-full z-50 transition-all duration-300 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 py-4"
-    >
-      <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <!-- LOGO -->
-        <a
-          href="/"
-          class="font-headline text-base sm:text-lg tracking-wider text-white flex items-center gap-2 group shrink-0"
+        <!-- HEADER PRINCIPAL DE TALLER CANTÓN -->
+        <header
+          id="site-header"
+          class="fixed top-0 md:top-[33px] left-0 w-full z-50 transition-all duration-300 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 py-4"
         >
-          TALLER <span
-            class="text-red-600 group-hover:text-red-500 transition-colors"
-            >CANTÓN</span
-          >
-          <span
-            class="text-[9px] bg-red-600/10 text-red-500 border border-red-600/20 px-1.5 py-0.5 rounded tracking-widest hidden sm:inline-block"
-          >
-            Hurlingham</span
-          >
-        </a>
-
-        <!-- NAV DESKTOP (Cambiado a xl para evitar amontonamientos en pantallas medianas) -->
-        <nav
-          class="hidden xl:flex items-center gap-6 text-xs uppercase tracking-wider font-medium text-neutral-300"
-        >
-          <a
-            href="/"
-            class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
-            >Inicio</a
-          >
-          <a
-            href="/chapa-y-pintura/"
-            class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
-            >Chapa y pintura</a
-          >
-          <a
-            href="/mecanica-de-motos/"
-            class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
-            >Moto Box</a
-          >
-          <a
-            href="/terminacion-estetica/"
-            class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
-            >Estética</a
-          >
-          <a
-            href="/trabajos/"
-            class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
-            >Trabajos</a
-          >
-          <a
-            href="/nosotros/"
-            class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
-            >Nosotros</a
-          >
-        </nav>
-
-        <!-- CTA DESKTOP -->
-        <div class="hidden xl:flex items-center gap-3 shrink-0">
-          <a
-            href={whatsappTurnoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative group overflow-hidden bg-red-600 hover:bg-red-700 text-white text-xs font-headline px-5 py-2.5 transition-all duration-300 tracking-wider flex items-center gap-2 shadow-lg shadow-red-600/20 active:scale-95"
-          >
-            <span
-              class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-            ></span>
-            <span>Solicitar Turno</span>
-            <svg
-              class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+          <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <!-- LOGO -->
+            <a
+              href="/"
+              class="font-headline text-base sm:text-lg tracking-wider text-white flex items-center gap-2 group shrink-0"
             >
-          </a>
-        </div>
+              TALLER{" "}
+              <span class="text-red-600 group-hover:text-red-500 transition-colors">
+                CANTÓN
+              </span>
+              <span class="text-[9px] bg-red-600/10 text-red-500 border border-red-600/20 px-1.5 py-0.5 rounded tracking-widest hidden sm:inline-block">
+                Hurlingham
+              </span>
+            </a>
 
-        <!-- BOTÓN MENÚ MÓVIL / TABLET (Se activa en xl en lugar de lg) -->
-        <button
-          id="menu-toggle"
-          class="xl:hidden text-white focus:outline-none p-2 relative w-10 h-10 flex flex-col justify-center items-center group shrink-0"
-          aria-label="Abrir menú"
-        >
-          <span
-            class="w-6 h-0.5 bg-white mb-1.5 transition-transform duration-300 group-[.active]:rotate-45 group-[.active]:translate-y-2"
-          ></span>
-          <span
-            class="w-6 h-0.5 bg-white mb-1.5 transition-opacity duration-300 group-[.active]:opacity-0"
-          ></span>
-          <span
-            class="w-6 h-0.5 bg-white transition-transform duration-300 group-[.active]:-rotate-45 group-[.active]:-translate-y-2"
-          ></span>
-        </button>
-      </div>
+            <!-- NAV DESKTOP -->
+            <nav
+              aria-label="Navegación principal"
+              class="hidden xl:flex items-center gap-6 text-xs uppercase tracking-wider font-medium text-neutral-300"
+            >
+              <a
+                href="/"
+                class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
+              >
+                Inicio
+              </a>
+              <a
+                href="/chapa-y-pintura/"
+                class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
+              >
+                Chapa y pintura
+              </a>
+              <a
+                href="/mecanica-de-motos/"
+                class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
+              >
+                Moto Box
+              </a>
+              <a
+                href="/terminacion-estetica/"
+                class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
+              >
+                Estética
+              </a>
+              <a
+                href="/trabajos/"
+                class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
+              >
+                Trabajos
+              </a>
+              <a
+                href="/nosotros/"
+                class="hover:text-white transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 hover:after:w-full after:transition-all"
+              >
+                Nosotros
+              </a>
+            </nav>
 
-      <!-- MENÚ MÓVIL / TABLET DESPLEGABLE -->
-      <div
-        id="mobile-menu"
-        class="hidden xl:hidden absolute top-full left-0 w-full bg-[#0d0d0d]/98 backdrop-blur-xl border-b border-neutral-800 px-6 py-8 flex flex-col gap-4 shadow-2xl transition-all duration-300 origin-top"
-      >
-        <div class="flex flex-col gap-3 text-sm font-medium">
-          <a
-            href="/"
-            class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
-            >Inicio <span class="text-xs text-red-600">→</span></a
-          >
-          <a
-            href="/chapa-y-pintura/"
-            class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
-            >Chapa y pintura <span class="text-xs text-red-600">→</span></a
-          >
-          <a
-            href="/mecanica-de-motos/"
-            class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
-            >Mecánica de motos <span class="text-xs text-red-600">→</span></a
-          >
-          <a
-            href="/terminacion-estetica/"
-            class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
-            >Terminación y estética <span class="text-xs text-red-600">→</span
-            ></a
-          >
-          <a
-            href="/trabajos/"
-            class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
-            >Trabajos realizados <span class="text-xs text-red-600">→</span></a
-          >
-          <a
-            href="/nosotros/"
-            class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
-            >Nosotros <span class="text-xs text-red-600">→</span></a
-          >
-        </div>
+            <!-- CTA DESKTOP -->
+            <div class="hidden xl:flex items-center gap-3 shrink-0">
+              <a
+                href={whatsappTurnoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="relative group overflow-hidden bg-red-600 hover:bg-red-700 text-white text-xs font-headline px-5 py-2.5 transition-all duration-300 tracking-wider flex items-center gap-2 shadow-lg shadow-red-600/20 active:scale-95"
+              >
+                <span class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <span>Solicitar Turno</span>
+                <svg
+                  class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
 
-        <a
-          href={whatsappTurnoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="bg-red-600 hover:bg-red-700 text-white text-center text-xs font-headline py-4 mt-2 tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30"
-        >
-          <span>SOLICITAR TURNO POR WHATSAPP</span>
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
-          >
-        </a>
-      </div>
-    </header>
+            <!-- BOTÓN MENÚ MÓVIL / TABLET -->
+            <button
+              id="menu-toggle"
+              class="xl:hidden text-white focus:outline-none p-2 relative w-10 h-10 flex flex-col justify-center items-center group shrink-0"
+              aria-label="Abrir menú"
+            >
+              <span class="w-6 h-0.5 bg-white mb-1.5 transition-transform duration-300 group-[.active]:rotate-45 group-[.active]:translate-y-2" />
+              <span class="w-6 h-0.5 bg-white mb-1.5 transition-opacity duration-300 group-[.active]:opacity-0" />
+              <span class="w-6 h-0.5 bg-white transition-transform duration-300 group-[.active]:-rotate-45 group-[.active]:-translate-y-2" />
+            </button>
+          </div>
 
-    <!-- Contenido principal -->
-    <main class="flex-grow pt-20 md:pt-24">
+          <!-- MENÚ MÓVIL / TABLET DESPLEGABLE -->
+          <div
+            id="mobile-menu"
+            class="hidden xl:hidden absolute top-full left-0 w-full bg-[#0d0d0d]/98 backdrop-blur-xl border-b border-neutral-800 px-6 py-8 flex flex-col gap-4 shadow-2xl transition-all duration-300 origin-top"
+          >
+            <div class="flex flex-col gap-3 text-sm font-medium">
+              <a
+                href="/"
+                class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
+              >
+                Inicio <span class="text-xs text-red-600">→</span>
+              </a>
+              <a
+                href="/chapa-y-pintura/"
+                class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
+              >
+                Chapa y pintura <span class="text-xs text-red-600">→</span>
+              </a>
+              <a
+                href="/mecanica-de-motos/"
+                class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
+              >
+                Moto Box — Mecánica de motos{" "}
+                <span class="text-xs text-red-600">→</span>
+              </a>
+              <a
+                href="/terminacion-estetica/"
+                class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
+              >
+                Terminación y estética{" "}
+                <span class="text-xs text-red-600">→</span>
+              </a>
+              <a
+                href="/trabajos/"
+                class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
+              >
+                Trabajos realizados <span class="text-xs text-red-600">→</span>
+              </a>
+              <a
+                href="/nosotros/"
+                class="text-neutral-300 hover:text-white py-2 border-b border-neutral-900 flex justify-between items-center"
+              >
+                Nosotros <span class="text-xs text-red-600">→</span>
+              </a>
+            </div>
+
+            <a
+              href={whatsappTurnoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-red-600 hover:bg-red-700 text-white text-center text-xs font-headline py-4 mt-2 tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30"
+            >
+              <span>SOLICITAR TURNO POR WHATSAPP</span>
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+          </div>
+        </header>
+      </>
+    )}
+
+    <!-- Contenido principal (sin padding superior extra cuando se oculta el header global) -->
+    <main class={`flex-grow ${hideHeader ? "" : "pt-20 md:pt-24"}`}>
       <slot />
-      <GoogleReviews />
+      {!hideReviews && <GoogleReviews />}
     </main>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT DEL MENÚ MÓVIL -->
     <script>
       const menuToggle = document.getElementById("menu-toggle");
       const mobileMenu = document.getElementById("mobile-menu");
